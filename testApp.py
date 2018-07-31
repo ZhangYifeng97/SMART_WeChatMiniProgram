@@ -254,4 +254,4 @@ api.add_resource(SISTEvents, '/events/SIST')
 
 
 if __name__ == '__main__':
-    app.run(debug=debugBool)
+    app.run(debug=debugBool, host="0.0.0.0")
