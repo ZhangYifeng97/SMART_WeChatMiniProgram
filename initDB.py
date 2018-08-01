@@ -12,12 +12,14 @@ for name in names:
 
     cursor.execute("""
         CREATE TABLE Events (
-            Name NVARCHAR(30),
+            Host NVARCHAR(30),
             Date DATE,
             BeginTime TIME,
             EndTime TIME,
             Location NVARCHAR(20),
-            Description NVARCHAR(500),
+            Bio NVARCHAR(500),
+            Speaker NVARCHAR(30),
+            Abstract NVARCHAR(500),
             PRIMARY KEY (Location, Date, BeginTime)
         );
     """)

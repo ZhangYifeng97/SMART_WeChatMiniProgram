@@ -1,4 +1,6 @@
 import sqlite3
+import ast
+from . import stringParsing
 
 names = ["GEC", "SIST", "SLST", "SPST", "SEM", "SCA", "IMS"]
 
@@ -10,8 +12,7 @@ for name in names:
 
 
 def updateDB(whichDB):
-    import ast
-    from .utils import stringParsing
+
     conn = sqlite3.connect(posDB[whichDB])
 
     # SQL table to Python dict
