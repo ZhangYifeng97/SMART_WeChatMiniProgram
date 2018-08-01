@@ -67,7 +67,7 @@ class Login(Resource):
 
         print(args)
         code = request.args.get("code")
-        encrypted_data = request.args.get("encryptedData")
+        encrypted_data = request.args.get("encryptedData").replace(" ", "+")
         iv = request.args.get("iv")
 
         print("\ncode is : ", code)
