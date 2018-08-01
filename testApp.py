@@ -11,7 +11,7 @@ APP_SECRET = "e8f76ec53056679cbdcb733e1015bb56"
 ############################################################################
 # This HAS to be False if we are actually running it instead of testing it #
 ############################################################################
-debugBool = False
+debugBool = True
 
 app = Flask(__name__)
 api = Api(app)
@@ -83,6 +83,7 @@ class Login(Resource):
         # iv 加密算法的初始向量
         # 这两个参数需要js获取
         user_info = crypt.decrypt(encrypted_data, iv)
+        print(user_info)
 
 
 api.add_resource(Login, '/login', endpoint="login")
