@@ -11,6 +11,7 @@ for name in names:
 
 def updateDB(whichDB):
     import ast
+    import stringParsing
     conn = sqlite3.connect(posDB[whichDB])
 
     # SQL table to Python dict
