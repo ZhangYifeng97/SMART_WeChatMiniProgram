@@ -12,7 +12,7 @@ APP_SECRET = "e8f76ec53056679cbdcb733e1015bb56"
 ############################################################################
 # This HAS to be False if we are actually running it instead of testing it #
 ############################################################################
-debugBool = True
+debugBool = False
 
 app = Flask(__name__)
 api = Api(app)
@@ -60,8 +60,6 @@ class IMSEvents(Resource):
 class Login(Resource):
     def get(self):
 
-
-
         wxAPI = WXAPPAPI(appid=APP_ID, app_secret=APP_SECRET)
 
 
@@ -89,7 +87,6 @@ class Login(Resource):
         # 这两个参数需要js获取
         user_info = crypt.decrypt(encrypted_data, iv)
         print("\n\nuserinfo: ", user_info)
-        return user_info
 
 
 api.add_resource(Login, '/login', endpoint="login")
