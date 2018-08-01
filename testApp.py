@@ -12,7 +12,7 @@ APP_SECRET = "e8f76ec53056679cbdcb733e1015bb56"
 ############################################################################
 # This HAS to be False if we are actually running it instead of testing it #
 ############################################################################
-debugBool = False
+debugBool = True
 
 app = Flask(__name__)
 api = Api(app)
@@ -82,7 +82,7 @@ class Login(Resource):
         # 获取session_info 后
 
         session_key = session_info.get('session_key')
-        crypt = WXBizDataCrypt(WXAPP_APPID, session_key)
+        crypt = WXBizDataCrypt(APP_ID, session_key)
 
         # encrypted_data 包括敏感数据在内的完整用户信息的加密数据
         # iv 加密算法的初始向量
@@ -119,4 +119,4 @@ api.add_resource(IMSEvents, '/events/IMS')
 
 
 if __name__ == '__main__':
-    app.run(debug=debugBool, host="0.0.0.0")
+    app.run(debug=debugBool, host="0.0.0.0", port=80)
