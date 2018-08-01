@@ -1,5 +1,5 @@
-from flask import Flask
-from flask_restful import Api, Resource, reqparse
+from flask import Flask, request
+from flask_restful import Api, Resource
 from utils import databaseOperations
 from weixin import WXAPPAPI
 from weixin.lib.wxcrypt import WXBizDataCrypt
@@ -63,20 +63,19 @@ class Login(Resource):
         wxAPI = WXAPPAPI(appid=APP_ID, app_secret=APP_SECRET)
 
 
-        parser = reqparse.RequestParser()
-        parser.add_argument("code", type=str)
-        parser.add_argument("iv", type=str)
-        parser.add_argument("encryptedData", type=str)
 
-        args = parser.parse_args()
 
-        code = args["code"]
-        encrypted_data = args["encryptedData"]
-        iv = args["iv"]
+        print(args)
+        code = request.args.get("code")
+        encrypted_data = request.args.get("encryptedData")
+        iv = request.args.get("iv")
 
-        print("\n\n\ncode is : ", code)
+        print("\ncode is : ", code)
+        print("\ndata is : ", encrypted_data)
+        print("\niv is : ", iv)
 
         session_info = wxAPI.exchange_code_for_session_key(code=code)
+
         # 获取session_info 后
 
         session_key = session_info.get('session_key')
@@ -86,7 +85,7 @@ class Login(Resource):
         # iv 加密算法的初始向量
         # 这两个参数需要js获取
         user_info = crypt.decrypt(encrypted_data, iv)
-        print("\n\nuserinfo: ", user_info)
+        print("\nuserinfo: ", user_info)
 
 
 api.add_resource(Login, '/login', endpoint="login")
