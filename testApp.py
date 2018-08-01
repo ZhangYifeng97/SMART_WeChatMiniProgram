@@ -1,6 +1,11 @@
 from flask import Flask
-from flask_restful import Api, Resource
+from flask_restful import Api, Resource, reqparse
 from utils import databaseOperations
+from weixin import WXAPPAPI
+from weixin.lib.wxcrypt import WXBizDataCrypt
+
+APP_ID = "wx2f288f8d6e59cb0c"
+APP_SECRET = "e8f76ec53056679cbdcb733e1015bb56"
 
 
 ############################################################################
@@ -51,10 +56,36 @@ class IMSEvents(Resource):
         return databaseOperations.getDataFromDB("IMS")
 
 
+class Login(Resource):
+    def get(self):
+        from weixin import WXAPPAPI
+        from weixin.lib.wxcrypt import WXBizDataCrypt
 
 
 
+        wxAPI = WXAPPAPI(appid=APP_ID, app_secret=APP_SECRET)
 
+
+        parser = reqparse.RequestParser()
+        parser.add_argument("code", type=str)
+
+        code = parser.parse_args()
+        return code
+        # print("code: ", code)
+        # session_info = wxAPI.exchange_code_for_session_key(code=code)
+        #
+        # # 获取session_info 后
+        #
+        # session_key = session_info.get('session_key')
+        # crypt = WXBizDataCrypt(WXAPP_APPID, session_key)
+        #
+        # # encrypted_data 包括敏感数据在内的完整用户信息的加密数据
+        # # iv 加密算法的初始向量
+        # # 这两个参数需要js获取
+        # user_info = crypt.decrypt(encrypted_data, iv)
+
+
+api.add_resource(Login, '/login', endpoint="login")
 api.add_resource(GECEvents, '/events/GEC')
 api.add_resource(SISTEvents, '/events/SIST')
 api.add_resource(SLSTEvents, '/events/SLST')
