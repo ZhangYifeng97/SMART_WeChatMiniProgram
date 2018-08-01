@@ -4,6 +4,7 @@ from utils import databaseOperations
 from weixin import WXAPPAPI
 from weixin.lib.wxcrypt import WXBizDataCrypt
 
+
 APP_ID = "wx2f288f8d6e59cb0c"
 APP_SECRET = "e8f76ec53056679cbdcb733e1015bb56"
 
@@ -11,7 +12,7 @@ APP_SECRET = "e8f76ec53056679cbdcb733e1015bb56"
 ############################################################################
 # This HAS to be False if we are actually running it instead of testing it #
 ############################################################################
-debugBool = True
+debugBool = False
 
 app = Flask(__name__)
 api = Api(app)
@@ -58,8 +59,6 @@ class IMSEvents(Resource):
 
 class Login(Resource):
     def get(self):
-        from weixin import WXAPPAPI
-        from weixin.lib.wxcrypt import WXBizDataCrypt
 
 
 
@@ -68,12 +67,18 @@ class Login(Resource):
 
         parser = reqparse.RequestParser()
         parser.add_argument("code", type=str)
+        parser.add_argument("iv", type=str)
+        parser.add_argument("encryptedData", type=str)
 
-        code = parser.parse_args()
-        return code
-        print("code: ", code)
+        args = parser.parse_args()
+
+        code = args["code"]
+        encrypted_data = args["encryptedData"]
+        iv = args["iv"]
+
+        print("\n\n\ncode is : ", code)
+
         session_info = wxAPI.exchange_code_for_session_key(code=code)
-
         # 获取session_info 后
 
         session_key = session_info.get('session_key')
@@ -84,6 +89,7 @@ class Login(Resource):
         # 这两个参数需要js获取
         user_info = crypt.decrypt(encrypted_data, iv)
         print(user_info)
+        return user_info
 
 
 api.add_resource(Login, '/login', endpoint="login")
@@ -113,4 +119,4 @@ api.add_resource(IMSEvents, '/events/IMS')
 
 
 if __name__ == '__main__':
-    app.run(debug=debugBool, host="0.0.0.0", port=80)
+    app.run(debug=debugBool, host="0.0.0.0", port=5000)
