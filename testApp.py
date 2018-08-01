@@ -71,18 +71,18 @@ class Login(Resource):
 
         code = parser.parse_args()
         return code
-        # print("code: ", code)
-        # session_info = wxAPI.exchange_code_for_session_key(code=code)
-        #
-        # # 获取session_info 后
-        #
-        # session_key = session_info.get('session_key')
-        # crypt = WXBizDataCrypt(WXAPP_APPID, session_key)
-        #
-        # # encrypted_data 包括敏感数据在内的完整用户信息的加密数据
-        # # iv 加密算法的初始向量
-        # # 这两个参数需要js获取
-        # user_info = crypt.decrypt(encrypted_data, iv)
+        print("code: ", code)
+        session_info = wxAPI.exchange_code_for_session_key(code=code)
+
+        # 获取session_info 后
+
+        session_key = session_info.get('session_key')
+        crypt = WXBizDataCrypt(WXAPP_APPID, session_key)
+
+        # encrypted_data 包括敏感数据在内的完整用户信息的加密数据
+        # iv 加密算法的初始向量
+        # 这两个参数需要js获取
+        user_info = crypt.decrypt(encrypted_data, iv)
 
 
 api.add_resource(Login, '/login', endpoint="login")
@@ -112,4 +112,4 @@ api.add_resource(IMSEvents, '/events/IMS')
 
 
 if __name__ == '__main__':
-    app.run(debug=debugBool, host="0.0.0.0", port=5000)
+    app.run(debug=debugBool, host="0.0.0.0", port=80)
