@@ -65,10 +65,18 @@ class Login(Resource):
 
 
 
-        print(args)
         code = request.args.get("code")
+
+        ##############################################
+        # FIXME: Flask request parser takes + as space
         encrypted_data = request.args.get("encryptedData").replace(" ", "+")
-        iv = request.args.get("iv")
+        iv = request.args.get("iv").replace(" ", "+")
+        ##############################################
+
+
+
+
+
 
         print("\ncode is : ", code)
         print("\ndata is : ", encrypted_data)
