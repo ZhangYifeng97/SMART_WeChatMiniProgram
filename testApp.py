@@ -88,7 +88,7 @@ class Login(Resource):
         # iv 加密算法的初始向量
         # 这两个参数需要js获取
         user_info = crypt.decrypt(encrypted_data, iv)
-        print(user_info)
+        print("\n\nuserinfo: ", user_info)
         return user_info
 
 
