@@ -32,25 +32,23 @@ def rawString2SQL(updateDict):
     originalTimeString = updateDict["Time"]
     replaceTimeString = originalTimeString.replace("—", " ").replace(",", "")
     splitTimeList = replaceTimeString.split(" ")
-    print(splitTimeList)
+
     startHourString = splitTimeList[0]
     endHourString = splitTimeList[1]
     monthNameString = splitTimeList[2]
     monthNumString = monthString2Num(splitTimeList[2])
     dayNumString = "%02d" % int(splitTimeList[3])
     date = "\'" + str(datetime.now().year) + "-" + monthNumString + "-" + dayNumString + "\'"
-    print(date)
+
     BeginTime = "\'" + startHourString + ":00\'"
-    print(BeginTime)
+
     EndTime = "\'" + endHourString + ":00\'"
-    print(EndTime)
+
     values.append(BeginTime)
     values.append(EndTime)
     values.append(date)
     keyString = ", ".join(keys)
     valueString = ", ".join(values)
 
-    print(keyString)
-    print(valueString)
 
     return keyString, valueString

@@ -11,7 +11,7 @@ for name in names:
     posUpdate[name] = "update/"+name+".txt"
 
 
-def updateDB(whichDB):
+def updateDB(whichDB, postJSON):
 
     conn = sqlite3.connect(posDB[whichDB])
 
@@ -22,31 +22,23 @@ def updateDB(whichDB):
 
     print ("Connected to database successfully")
 
-    with open(posUpdate[whichDB], "r") as updateFile:
-        fileString = updateFile.read()
-        try:
-            # List of Dicts
-            updateDicts = ast.literal_eval(fileString) # Safe eval() here
-        except:
-            return
 
-
-    # Clear the file
-    with open(posUpdate[whichDB], "w"):
-        pass
+    updateDict = postJSON
 
 
 
-    for updateDict in updateDicts:
-        keyString, valueString = stringParsing.rawString2SQL(updateDict)
 
 
-        # REPLACE: UPDATE if EXISTS else INSERT
-        query = "REPLACE INTO Events (%s) VALUES (%s)" % (keyString, valueString)
+
+    keyString, valueString = stringParsing.rawString2SQL(updateDict)
 
 
-        cursor.execute(query)
-        conn.commit()
+    # REPLACE: UPDATE if EXISTS else INSERT
+    query = "REPLACE INTO Events (%s) VALUES (%s)" % (keyString, valueString)
+
+
+    cursor.execute(query)
+    conn.commit()
     cursor.close()
 
 

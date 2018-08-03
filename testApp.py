@@ -5,6 +5,8 @@ from weixin import WXAPPAPI
 from weixin.lib.wxcrypt import WXBizDataCrypt
 
 
+Users = {"SIST": "SIST"}
+
 APP_ID = "wx2f288f8d6e59cb0c"
 APP_SECRET = "e8f76ec53056679cbdcb733e1015bb56"
 
@@ -20,41 +22,45 @@ api = Api(app)
 
 class SISTEvents(Resource):
     def get(self):
-        databaseOperations.updateDB("SIST")
         return databaseOperations.getDataFromDB("SIST")
 
-    def put(self):
-        # Need a textbox here
-        pass
+    def post(self):
+        postUsername = request.args.get("username")
+        postPassword = request.args.get("password")
 
-    def delete(self):
-        # Need a textbox here
-        pass
+        if postUsername not in Users or Users[postUsername] != postPassword:
+            return "Invalid username or password"
+
+
+        postJSON = request.get_json()
+        databaseOperations.updateDB("SIST", postJSON)
+        return postJSON
+
+
+
+
 
 class GECEvents(Resource):
     def get(self):
-        databaseOperations.updateDB("GEC")
         return databaseOperations.getDataFromDB("GEC")
 class SLSTEvents(Resource):
     def get(self):
-        databaseOperations.updateDB("SLST")
         return databaseOperations.getDataFromDB("SLST")
 class SPSTEvents(Resource):
     def get(self):
-        databaseOperations.updateDB("SPST")
         return databaseOperations.getDataFromDB("SPST")
 class SEMEvents(Resource):
     def get(self):
-        databaseOperations.updateDB("SEM")
         return databaseOperations.getDataFromDB("SEM")
 class SCAEvents(Resource):
     def get(self):
-        databaseOperations.updateDB("SCA")
         return databaseOperations.getDataFromDB("SCA")
 class IMSEvents(Resource):
     def get(self):
-        databaseOperations.updateDB("IMS")
         return databaseOperations.getDataFromDB("IMS")
+
+
+
 
 
 class Login(Resource):
@@ -123,4 +129,4 @@ api.add_resource(IMSEvents, '/events/IMS')
 
 
 if __name__ == '__main__':
-    app.run(debug=debugBool, host="0.0.0.0", port=80)
+    app.run(debug=debugBool, host="0.0.0.0", port=5000)
