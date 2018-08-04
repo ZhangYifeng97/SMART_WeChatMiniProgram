@@ -1,6 +1,11 @@
 from flask import Flask, request
 from flask_restful import Api, Resource
+
+import logging
+from logging.handlers import RotatingFileHandler
+
 from utils import databaseOperations
+
 from weixin import WXAPPAPI
 from weixin.lib.wxcrypt import WXBizDataCrypt
 
@@ -129,4 +134,7 @@ api.add_resource(IMSEvents, '/events/IMS')
 
 
 if __name__ == '__main__':
+    handler = RotatingFileHandler('foo.log', maxBytes=10000, backupCount=1)
+    handler.setLevel(logging.INFO)
+    app.logger.addHandler(handler)
     app.run(debug=debugBool, host="0.0.0.0", port=5000)

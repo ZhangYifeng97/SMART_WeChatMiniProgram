@@ -1,4 +1,5 @@
 def monthString2Num(string):
+    print("monthString: ", string)
     m = {
             'jan': "01",
             'feb': "02",
@@ -18,6 +19,7 @@ def monthString2Num(string):
         out = m[s]
         return out
     except:
+        print(s)
         raise ValueError('Not a month')
 
 
