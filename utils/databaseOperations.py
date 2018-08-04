@@ -22,8 +22,9 @@ def updateDB(whichDB, postJSON):
 
     print ("Connected to database successfully")
 
-
-    updateDict = postJSON
+    print(postJSON)
+    print(type(postJSON))
+    updateDict = eval(postJSON)
 
 
 

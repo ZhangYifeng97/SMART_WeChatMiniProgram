@@ -12,6 +12,7 @@ for name in names:
 
     cursor.execute("""
         CREATE TABLE Events (
+            Title NVARCHAR(30),
             Host NVARCHAR(30),
             Date DATE,
             BeginTime TIME,

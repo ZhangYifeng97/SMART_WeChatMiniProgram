@@ -25,14 +25,14 @@ class SISTEvents(Resource):
         return databaseOperations.getDataFromDB("SIST")
 
     def post(self):
-        postUsername = request.args.get("username")
         postPassword = request.args.get("password")
 
-        if postUsername not in Users or Users[postUsername] != postPassword:
+        if postPassword != "SIST":
             return "Invalid username or password"
 
-
-        postJSON = request.get_json()
+        print("Right password")
+        postJSON = request.get_data().decode("utf-8")
+        print(postJSON)
         databaseOperations.updateDB("SIST", postJSON)
         return postJSON
 
