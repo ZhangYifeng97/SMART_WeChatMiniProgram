@@ -26,6 +26,7 @@ def monthString2Num(string):
 
 def rawString2SQL(updateDict):
     from datetime import datetime
+    import re
     keys = [key for key in updateDict if key != "Time"]
     values = ["\'" + updateDict[key].replace("\'", "\'\'") + "\'" for key in keys]
     keys.append("BeginTime")
@@ -35,6 +36,7 @@ def rawString2SQL(updateDict):
     print("originalTimeString:", originalTimeString)
 
     replaceTimeString = originalTimeString.replace("—", " ").replace(",", "").replace("-", " ")
+    replaceTimeString = re.sub(' +', ' ', replaceTimeString)
     print("replaceTimeString:", replaceTimeString)
 
     splitTimeList = replaceTimeString.split(" ")
