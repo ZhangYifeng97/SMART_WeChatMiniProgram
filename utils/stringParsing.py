@@ -36,10 +36,9 @@ def rawString2SQL(updateDict):
     print("originalTimeString:", originalTimeString)
 
     replaceTimeString = originalTimeString.replace("—", " ").replace(",", "").replace("-", " ")
-    replaceTimeString = re.sub(' +', ' ', replaceTimeString)
     print("replaceTimeString:", replaceTimeString)
 
-    splitTimeList = replaceTimeString.split(" ")
+    splitTimeList = [x for x in replaceTimeString.split(" ") if x]
 
     print("splitTimeList:", splitTimeList)
     startHourString = splitTimeList[0]
