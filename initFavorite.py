@@ -18,13 +18,13 @@ cursor.execute("""
         Date DATE,
         BeginTime TIME,
         Location NVARCHAR(20),
-        userID NVARCHAR(32),
-        PRIMARY KEY (Location, Date, BeginTime, userID)
+        UserID NVARCHAR(32),
+        PRIMARY KEY (Location, Date, BeginTime, UserID)
     );
 """)
 
 
-keyString = "Date, BeginTime, Location, userID"
+keyString = "Date, BeginTime, Location, UserID"
 
 valueString = "\'2018-08-22\', \'11:00:00\', \'SIST\', \'lsd\'"
 query = "REPLACE INTO Events (%s) VALUES (%s)" % (keyString, valueString)

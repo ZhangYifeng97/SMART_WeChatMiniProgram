@@ -29,16 +29,16 @@ def getPopularEvents():
 
 
 
-def getUserFavoriteEvents(userID):
-    print("events for " + userID)
+def getUserFavoriteEvents(UserID):
+    print("events for " + UserID)
     conn = sqlite3.connect("database/Favorite.db")
     conn.row_factory = lambda c, r: dict(zip([col[0] for col in c.description], r))
     cursor = conn.cursor()
     query = """
         SELECT * FROM Events AS E
-        WHERE (E.userID = \'%s\')
+        WHERE (E.UserID = \'%s\')
         ORDER BY date(E.Date), time(E.BeginTime) ASC;
-        """ % (userID)
+        """ % (UserID)
     print("executing: " + query)
     cursor.execute(query)
     return cursor.fetchall()

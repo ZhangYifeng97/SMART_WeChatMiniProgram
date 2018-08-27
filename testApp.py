@@ -32,11 +32,11 @@ class PopularEvents(Resource):
 
 class FavoriteEvents(Resource):
     def get(self):
-        userID = request.args.get("userID")
-        return databaseOperations.getUserFavoriteEvents(userID)
+        UserID = request.args.get("UserID")
+        return databaseOperations.getUserFavoriteEvents(UserID)
     def post(self):
         postJSON = {}
-        postJSON["userID"] = request.args.get("userID")
+        postJSON["UserID"] = request.args.get("UserID")
         postJSON["BeginTime"] = request.args.get("BeginTime")
         postJSON["Date"] = request.args.get("Date")
         postJSON["Location"] = request.args.get("Location")
