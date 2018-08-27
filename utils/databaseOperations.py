@@ -2,13 +2,47 @@ import sqlite3
 import ast
 from . import stringParsing
 
-names = ["GEC", "SIST", "SLST", "SPST", "SEM", "SCA", "IMS"]
+names = ["GEC", "SIST", "SLST", "SPST", "SEM", "SCA", "IMS", "Favorite"]
 
 posDB = {}
 posUpdate = {}
 for name in names:
     posDB[name] = "database/"+name+".db"
     posUpdate[name] = "update/"+name+".txt"
+
+
+def getPopularEvents():
+    conn = sqlite3.connect("database/Favorite.db")
+    conn.row_factory = lambda c, r: dict(zip([col[0] for col in c.description], r))
+    cursor = conn.cursor()
+    query = """
+            SELECT * FROM (
+                SELECT Date, BeginTime, Location, COUNT(*) AS count FROM events
+                WHERE (date(Date) >= date('now'))
+                GROUP BY Date, BeginTime, Location
+                ORDER BY count DESC
+            ) LIMIT 10 ;
+            """
+    cursor.execute(query)
+    return cursor.fetchall()
+
+
+
+
+def getUserFavoriteEvents(userID):
+    print("events for " + userID)
+    conn = sqlite3.connect("database/Favorite.db")
+    conn.row_factory = lambda c, r: dict(zip([col[0] for col in c.description], r))
+    cursor = conn.cursor()
+    query = """
+        SELECT * FROM Events AS E
+        WHERE (E.userID = \'%s\')
+        ORDER BY date(E.Date), time(E.BeginTime) ASC;
+        """ % (userID)
+    print("executing: " + query)
+    cursor.execute(query)
+    return cursor.fetchall()
+
 
 
 def updateDB(whichDB, postJSON):
@@ -41,6 +75,9 @@ def updateDB(whichDB, postJSON):
     cursor.execute(query)
     conn.commit()
     cursor.close()
+
+
+
 
 
 

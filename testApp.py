@@ -25,6 +25,29 @@ app = Flask(__name__)
 api = Api(app)
 
 
+
+class PopularEvents(Resource):
+    def get(self):
+        return databaseOperations.getPopularEvents()
+
+class FavoriteEvents(Resource):
+    def get(self):
+        userID = request.args.get("userID")
+        return databaseOperations.getUserFavoriteEvents(userID)
+    def post(self):
+        postJSON = {}
+        postJSON["userID"] = request.args.get("userID")
+        postJSON["BeginTime"] = request.args.get("BeginTime")
+        postJSON["Date"] = request.args.get("Date")
+        postJSON["Location"] = request.args.get("Location")
+        databaseOperations.updateDB("Favorite", postJSON)
+        return postJSON
+
+
+
+
+
+
 class SISTEvents(Resource):
     def get(self):
         return databaseOperations.getDataFromDB("SIST")
@@ -115,6 +138,8 @@ api.add_resource(SPSTEvents, '/events/SPST')
 api.add_resource(SEMEvents, '/events/SEM')
 api.add_resource(SCAEvents, '/events/SCA')
 api.add_resource(IMSEvents, '/events/IMS')
+api.add_resource(FavoriteEvents, "/events/Favorite")
+api.add_resource(PopularEvents, "/events/Popular")
 
 
 # class DayEvents(Resource):
