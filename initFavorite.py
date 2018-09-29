@@ -1,7 +1,7 @@
 import sqlite3
 
 
-conn = sqlite3.connect("database/Favorite.db")
+conn = sqlite3.connect("database.db")
 print ("Connected to database successfully")
 
 cursor = conn.cursor()
@@ -10,60 +10,58 @@ cursor = conn.cursor()
 
 
 cursor.execute("""
-    DROP TABLE IF EXISTS Events;
+    DROP TABLE IF EXISTS Favorite;
 """)
 
 cursor.execute("""
-    CREATE TABLE Events (
+    CREATE TABLE Favorite (
         Date DATE,
         BeginTime TIME,
         Location NVARCHAR(20),
         UserID NVARCHAR(32),
+        Department NVARCHAR(5),
         PRIMARY KEY (Location, Date, BeginTime, UserID)
     );
 """)
 
 
-keyString = "Date, BeginTime, Location, UserID"
+keyString = "Date, BeginTime, Location, UserID, Department"
 
-valueString = "\'2018-08-22\', \'11:00:00\', \'SIST\', \'lsd\'"
-query = "REPLACE INTO Events (%s) VALUES (%s)" % (keyString, valueString)
+valueString = "\'2018-09-29\', \'11:00:00\', \'Location\', \'lsd\', \'SIST\'"
+query = "REPLACE INTO Favorite (%s) VALUES (%s)" % (keyString, valueString)
 print(query)
 cursor.execute(query)
 
 
-valueString = "\'2018-08-22\', \'11:00:00\', \'SIST\', \'zyf\'"
-query = "REPLACE INTO Events (%s) VALUES (%s)" % (keyString, valueString)
+valueString = "\'2018-09-29\', \'11:00:00\', \'Location\', \'zyf\', \'SIST\'"
+query = "REPLACE INTO Favorite (%s) VALUES (%s)" % (keyString, valueString)
 print(query)
 cursor.execute(query)
 
-valueString = "\'2018-08-22\', \'11:00:00\', \'SIST\', \'sy\'"
-query = "REPLACE INTO Events (%s) VALUES (%s)" % (keyString, valueString)
+valueString = "\'2018-09-29\', \'11:00:00\', \'Location\', \'sy\', \'SIST\'"
+query = "REPLACE INTO Favorite (%s) VALUES (%s)" % (keyString, valueString)
 print(query)
 cursor.execute(query)
 
-valueString = "\'2018-08-22\', \'12:00:00\', \'SIST\', \'zyf\'"
-query = "REPLACE INTO Events (%s) VALUES (%s)" % (keyString, valueString)
+valueString = "\'2018-09-30\', \'11:00:00\', \'Location\', \'zyf\', \'SIST\'"
+query = "REPLACE INTO Favorite (%s) VALUES (%s)" % (keyString, valueString)
 print(query)
 cursor.execute(query)
 
-valueString = "\'2018-08-22\', \'12:00:00\', \'SIST\', \'lsd\'"
-query = "REPLACE INTO Events (%s) VALUES (%s)" % (keyString, valueString)
+valueString = "\'2018-09-30\', \'11:00:00\', \'Location\', \'lsd\', \'SIST\'"
+query = "REPLACE INTO Favorite (%s) VALUES (%s)" % (keyString, valueString)
 print(query)
 cursor.execute(query)
 
-valueString = "\'2018-08-22\', \'13:00:00\', \'SIST\', \'zyf\'"
-query = "REPLACE INTO Events (%s) VALUES (%s)" % (keyString, valueString)
+valueString = "\'2018-10-01\', \'11:00:00\', \'Location\', \'zyf\', \'SIST\'"
+query = "REPLACE INTO Favorite (%s) VALUES (%s)" % (keyString, valueString)
 print(query)
 cursor.execute(query)
 
-valueString = "\'2018-08-22\', \'14:00:00\', \'SIST\', \'zyf\'"
-query = "REPLACE INTO Events (%s) VALUES (%s)" % (keyString, valueString)
-print(query)
-cursor.execute(query)
+
 conn.commit()
 
-cursor.execute("SELECT * FROM Events")
+cursor.execute("SELECT * FROM Favorites")
 print(cursor.fetchall())
 
 conn.close()

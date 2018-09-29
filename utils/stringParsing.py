@@ -24,39 +24,55 @@ def monthString2Num(string):
 
 
 
-def rawString2SQL(updateDict):
+def dict2SQL(updateDict):
     from datetime import datetime
     import re
-    keys = [key for key in updateDict if key != "Time"]
-    values = ["\'" + updateDict[key].replace("\'", "\'\'") + "\'" for key in keys]
-    keys.append("BeginTime")
-    keys.append("EndTime")
-    keys.append("Date")
-    originalTimeString = updateDict["Time"]
-    print("originalTimeString:", originalTimeString)
 
-    replaceTimeString = originalTimeString.replace("—", " ").replace(",", "").replace("-", " ")
-    print("replaceTimeString:", replaceTimeString)
+    # Raw dict, for adding events into table
+    if "Time" in [key for key in updateDict]:
+        keys = [key for key in updateDict if key != "Time"]
+        values = ["\'" + updateDict[key].replace("\'", "\'\'") + "\'" for key in keys]
+        keys.append("BeginTime")
+        keys.append("EndTime")
+        keys.append("Date")
+        originalTimeString = updateDict["Time"]
+        print("originalTimeString:", originalTimeString)
 
-    splitTimeList = [x for x in replaceTimeString.split(" ") if x]
+        replaceTimeString = originalTimeString.replace("—", " ").replace(",", "").replace("-", " ")
+        print("replaceTimeString:", replaceTimeString)
 
-    print("splitTimeList:", splitTimeList)
-    startHourString = splitTimeList[0]
-    endHourString = splitTimeList[1]
-    monthNameString = splitTimeList[2]
-    monthNumString = monthString2Num(splitTimeList[2])
-    dayNumString = "%02d" % int(splitTimeList[3])
-    date = "\'" + str(datetime.now().year) + "-" + monthNumString + "-" + dayNumString + "\'"
+        splitTimeList = [x for x in replaceTimeString.split(" ") if x]
 
-    BeginTime = "\'" + startHourString + ":00\'"
+        print("splitTimeList:", splitTimeList)
+        startHourString = splitTimeList[0]
+        endHourString = splitTimeList[1]
+        monthNameString = splitTimeList[2]
+        monthNumString = monthString2Num(splitTimeList[2])
+        dayNumString = "%02d" % int(splitTimeList[3])
 
-    EndTime = "\'" + endHourString + ":00\'"
 
-    values.append(BeginTime)
-    values.append(EndTime)
-    values.append(date)
+        if datetime.now().month > int(monthNumString):
+            date = "\'" + str(datetime.now().year + 1) + "-" + monthNumString + "-" + dayNumString + "\'"
+        else:
+            date = "\'" + str(datetime.now().year) + "-" + monthNumString + "-" + dayNumString + "\'"
+
+        BeginTime = "\'" + startHourString + ":00\'"
+
+        EndTime = "\'" + endHourString + ":00\'"
+
+        values.append(BeginTime)
+        values.append(EndTime)
+        values.append(date)
+        keyString = ", ".join(keys)
+        valueString = ", ".join(values)
+
+
+    # Dict after modification by previous steps
+    else:
+        keys = [key for key in updateDict]
+        values = ["\'" + updateDict[key].replace("\'", "\'\'") + "\'" for key in keys]
+
+
     keyString = ", ".join(keys)
     valueString = ", ".join(values)
-
-
     return keyString, valueString

@@ -32,15 +32,16 @@ class PopularEvents(Resource):
 
 class FavoriteEvents(Resource):
     def get(self):
-        UserID = request.args.get("UserID")
+        UserID = request.args.get("userid")
         return databaseOperations.getUserFavoriteEvents(UserID)
     def post(self):
-        postJSON = {}
-        postJSON["UserID"] = request.args.get("UserID")
-        postJSON["BeginTime"] = request.args.get("BeginTime")
-        postJSON["Date"] = request.args.get("Date")
-        postJSON["Location"] = request.args.get("Location")
-        databaseOperations.updateDB("Favorite", postJSON)
+        action = request.args.get("action")
+        postJSON = request.get_data().decode("utf-8")
+
+        if action == "add":
+            databaseOperations.replaceIntoDB("Favorite", postJSON)
+        if action == "delete":
+            databaseOperations.deleteFromDB("Favorite", postJSON)
         return postJSON
 
 
@@ -50,7 +51,7 @@ class FavoriteEvents(Resource):
 
 class SISTEvents(Resource):
     def get(self):
-        return databaseOperations.getDataFromDB("SIST")
+        return databaseOperations.getFourteenDaysEvents("SIST")
 
     def post(self):
         postPassword = request.args.get("password")
@@ -61,7 +62,7 @@ class SISTEvents(Resource):
         print("Right password")
         postJSON = request.get_data().decode("utf-8")
         print(postJSON)
-        databaseOperations.updateDB("SIST", postJSON)
+        databaseOperations.replaceIntoDB("SIST", postJSON)
         return postJSON
 
 
@@ -70,22 +71,22 @@ class SISTEvents(Resource):
 
 class GECEvents(Resource):
     def get(self):
-        return databaseOperations.getDataFromDB("GEC")
+        return databaseOperations.getFourteenDaysEvents("GEC")
 class SLSTEvents(Resource):
     def get(self):
-        return databaseOperations.getDataFromDB("SLST")
+        return databaseOperations.getFourteenDaysEvents("SLST")
 class SPSTEvents(Resource):
     def get(self):
-        return databaseOperations.getDataFromDB("SPST")
+        return databaseOperations.getFourteenDaysEvents("SPST")
 class SEMEvents(Resource):
     def get(self):
-        return databaseOperations.getDataFromDB("SEM")
+        return databaseOperations.getFourteenDaysEvents("SEM")
 class SCAEvents(Resource):
     def get(self):
-        return databaseOperations.getDataFromDB("SCA")
+        return databaseOperations.getFourteenDaysEvents("SCA")
 class IMSEvents(Resource):
     def get(self):
-        return databaseOperations.getDataFromDB("IMS")
+        return databaseOperations.getFourteenDaysEvents("IMS")
 
 
 
@@ -98,7 +99,7 @@ class Login(Resource):
 
 
 
-
+        
         code = request.args.get("code")
 
         ##############################################
@@ -128,6 +129,7 @@ class Login(Resource):
         # 这两个参数需要js获取
         user_info = crypt.decrypt(encrypted_data, iv)
         print("\nuserinfo: ", user_info)
+        return user_info
 
 
 api.add_resource(Login, '/login', endpoint="login")
@@ -138,18 +140,18 @@ api.add_resource(SPSTEvents, '/events/SPST')
 api.add_resource(SEMEvents, '/events/SEM')
 api.add_resource(SCAEvents, '/events/SCA')
 api.add_resource(IMSEvents, '/events/IMS')
-api.add_resource(FavoriteEvents, "/events/Favorite")
-api.add_resource(PopularEvents, "/events/Popular")
+api.add_resource(FavoriteEvents, "/events/favorite")
+api.add_resource(PopularEvents, "/events/popular")
 
 
 # class DayEvents(Resource):
 #     def get(self, day):
-#         return getDataFromDB("SIST")[int(day)]
+#         return getFourteenDaysEvents("SIST")[int(day)]
 #
 #
 # class AllEvents(Resource):
 #     def get(self):
-#         return getDataFromDB("SIST")
+#         return getFourteenDaysEvents("SIST")
 #
 #
 #
@@ -162,4 +164,4 @@ if __name__ == '__main__':
     handler = RotatingFileHandler('foo.log', maxBytes=10000, backupCount=1)
     handler.setLevel(logging.INFO)
     app.logger.addHandler(handler)
-    app.run(debug=debugBool, host="0.0.0.0")
+    app.run(debug=debugBool, host="0.0.0.0", port=5000)
