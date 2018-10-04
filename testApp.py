@@ -2,7 +2,7 @@ from flask import Flask, request
 from flask_restful import Api, Resource
 
 import logging
-from logging.handlers import TimedRotatingFileHandler
+from logging.handlers import RotatingFileHandler
 
 from utils import databaseOperations
 
