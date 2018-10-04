@@ -2,7 +2,7 @@ from flask import Flask, request
 from flask_restful import Api, Resource
 
 import logging
-from logging.handlers import RotatingFileHandler
+from logging.handlers import TimedRotatingFileHandler
 
 from utils import databaseOperations
 
@@ -23,6 +23,16 @@ debugBool = False
 
 app = Flask(__name__)
 api = Api(app)
+
+
+formatter = logging.Formatter('%(name)-12s %(asctime)s level-%(levelname)-8s thread-%(thread)-8d %(message)s')   # 每行日志的前缀设置
+log = logging.getLogger('api')
+fileTimeHandler = TimedRotatingFileHandler(cf.LOG_API_PATH + 'api_', "S", 1, 10)
+fileTimeHandler.suffix = "%Y%m%d.log"  #设置 切分后日志文件名的时间格式 默认 filename+"." + suffix 如果需要更改需要改logging 源码
+fileTimeHandler.setFormatter(formatter)
+logging.basicConfig(level = logging.INFO)
+fileTimeHandler.setFormatter(formatter)
+log.addHandler(fileTimeHandler)
 
 
 
@@ -99,7 +109,7 @@ class Login(Resource):
 
 
 
-        
+
         code = request.args.get("code")
 
         ##############################################
@@ -161,7 +171,4 @@ api.add_resource(PopularEvents, "/events/popular")
 
 
 if __name__ == '__main__':
-    handler = RotatingFileHandler('foo.log', maxBytes=10000, backupCount=1)
-    handler.setLevel(logging.INFO)
-    app.logger.addHandler(handler)
     app.run(debug=debugBool, host="0.0.0.0", port=5000)
