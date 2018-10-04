@@ -30,32 +30,32 @@ for name in names:
 
     keyString = "Title, Host, Date, BeginTime, EndTime, Location, Bio, Speaker, Abstract, ImageURL"
 
-    valueString = "\'Title\', \'Host\', \'2018-09-29\', \'11:00:00\', \'12:00:00\', \'Location\', \'Bio\', \'Speaker\', \'Abstract\', \'ImageURL\'"
+    valueString = "\'Title\', \'Host\', \'2018-10-07\', \'11:00:00\', \'12:00:00\', \'Location\', \'Bio\', \'Speaker\', \'Abstract\', \'ImageURL\'"
     query = "REPLACE INTO %s (%s) VALUES (%s)" % (name, keyString, valueString)
     print(query)
     cursor.execute(query)
 
-    valueString = "\'Title\', \'Host\', \'2018-09-29\', \'12:00:00\', \'13:00:00\', \'Location\', \'Bio\', \'Speaker\', \'Abstract\', \'ImageURL\'"
+    valueString = "\'Title\', \'Host\', \'2018-10-08\', \'11:00:00\', \'12:00:00\', \'Location\', \'Bio\', \'Speaker\', \'Abstract\', \'ImageURL\'"
     query = "REPLACE INTO %s (%s) VALUES (%s)" % (name, keyString, valueString)
     print(query)
     cursor.execute(query)
 
-    valueString = "\'Title\', \'Host\', \'2018-09-30\', \'11:00:00\', \'12:00:00\', \'Location\', \'Bio\', \'Speaker\', \'Abstract\', \'ImageURL\'"
+    valueString = "\'Title\', \'Host\', \'2018-10-09\', \'11:00:00\', \'12:00:00\', \'Location\', \'Bio\', \'Speaker\', \'Abstract\', \'ImageURL\'"
     query = "REPLACE INTO %s (%s) VALUES (%s)" % (name, keyString, valueString)
     print(query)
     cursor.execute(query)
 
-    valueString = "\'Title\', \'Host\', \'2018-10-01\', \'11:00:00\', \'12:00:00\', \'Location\', \'Bio\', \'Speaker\', \'Abstract\', \'ImageURL\'"
+    valueString = "\'Title\', \'Host\', \'2018-10-10\', \'11:00:00\', \'12:00:00\', \'Location\', \'Bio\', \'Speaker\', \'Abstract\', \'ImageURL\'"
     query = "REPLACE INTO %s (%s) VALUES (%s)" % (name, keyString, valueString)
     print(query)
     cursor.execute(query)
 
-    valueString = "\'Title\', \'Host\', \'2018-10-02\', \'11:00:00\', \'12:00:00\', \'Location\', \'Bio\', \'Speaker\', \'Abstract\', \'ImageURL\'"
+    valueString = "\'Title\', \'Host\', \'2018-10-11\', \'11:00:00\', \'12:00:00\', \'Location\', \'Bio\', \'Speaker\', \'Abstract\', \'ImageURL\'"
     query = "REPLACE INTO %s (%s) VALUES (%s)" % (name, keyString, valueString)
     print(query)
     cursor.execute(query)
 
-    valueString = "\'Title\', \'Host\', \'2018-10-03\', \'11:00:00\', \'12:00:00\', \'Location\', \'Bio\', \'Speaker\', \'Abstract\', \'ImageURL\'"
+    valueString = "\'Title\', \'Host\', \'2018-10-12\', \'11:00:00\', \'12:00:00\', \'Location\', \'Bio\', \'Speaker\', \'Abstract\', \'ImageURL\'"
     query = "REPLACE INTO %s (%s) VALUES (%s)" % (name, keyString, valueString)
     print(query)
     cursor.execute(query)

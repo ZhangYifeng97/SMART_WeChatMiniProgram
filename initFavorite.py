@@ -27,33 +27,33 @@ cursor.execute("""
 
 keyString = "Date, BeginTime, Location, UserID, Department"
 
-valueString = "\'2018-09-29\', \'11:00:00\', \'Location\', \'lsd\', \'SIST\'"
+valueString = "\'2018-10-12\', \'11:00:00\', \'Location\', \'lsd\', \'SIST\'"
 query = "REPLACE INTO Favorite (%s) VALUES (%s)" % (keyString, valueString)
 print(query)
 cursor.execute(query)
 
 
-valueString = "\'2018-09-29\', \'11:00:00\', \'Location\', \'zyf\', \'SIST\'"
+valueString = "\'2018-10-12\', \'11:00:00\', \'Location\', \'zyf\', \'SIST\'"
 query = "REPLACE INTO Favorite (%s) VALUES (%s)" % (keyString, valueString)
 print(query)
 cursor.execute(query)
 
-valueString = "\'2018-09-29\', \'11:00:00\', \'Location\', \'sy\', \'SIST\'"
+valueString = "\'2018-10-12\', \'11:00:00\', \'Location\', \'sy\', \'SIST\'"
 query = "REPLACE INTO Favorite (%s) VALUES (%s)" % (keyString, valueString)
 print(query)
 cursor.execute(query)
 
-valueString = "\'2018-09-30\', \'11:00:00\', \'Location\', \'zyf\', \'SIST\'"
+valueString = "\'2018-10-09\', \'11:00:00\', \'Location\', \'zyf\', \'SIST\'"
 query = "REPLACE INTO Favorite (%s) VALUES (%s)" % (keyString, valueString)
 print(query)
 cursor.execute(query)
 
-valueString = "\'2018-09-30\', \'11:00:00\', \'Location\', \'lsd\', \'SIST\'"
+valueString = "\'2018-10-09\', \'11:00:00\', \'Location\', \'lsd\', \'SIST\'"
 query = "REPLACE INTO Favorite (%s) VALUES (%s)" % (keyString, valueString)
 print(query)
 cursor.execute(query)
 
-valueString = "\'2018-10-01\', \'11:00:00\', \'Location\', \'zyf\', \'SIST\'"
+valueString = "\'2018-10-11\', \'11:00:00\', \'Location\', \'zyf\', \'SIST\'"
 query = "REPLACE INTO Favorite (%s) VALUES (%s)" % (keyString, valueString)
 print(query)
 cursor.execute(query)
