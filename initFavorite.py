@@ -19,7 +19,6 @@ cursor.execute("""
         BeginTime TIME,
         Location NVARCHAR(20),
         UserID NVARCHAR(32),
-        Department NVARCHAR(5),
         PRIMARY KEY (Location, Date, BeginTime, UserID)
     );
 """)
