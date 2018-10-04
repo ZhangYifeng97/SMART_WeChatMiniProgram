@@ -27,7 +27,7 @@ api = Api(app)
 
 formatter = logging.Formatter('%(name)-12s %(asctime)s level-%(levelname)-8s thread-%(thread)-8d %(message)s')   # 每行日志的前缀设置
 log = logging.getLogger('api')
-fileTimeHandler = TimedRotatingFileHandler(cf.LOG_API_PATH + 'api_', "S", 1, 10)
+fileTimeHandler = TimedRotatingFileHandler("logs/api_", "S", 1, 10)
 fileTimeHandler.suffix = "%Y%m%d.log"  #设置 切分后日志文件名的时间格式 默认 filename+"." + suffix 如果需要更改需要改logging 源码
 fileTimeHandler.setFormatter(formatter)
 logging.basicConfig(level = logging.INFO)
