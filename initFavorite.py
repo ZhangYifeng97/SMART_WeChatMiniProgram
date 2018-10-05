@@ -60,7 +60,7 @@ cursor.execute(query)
 
 conn.commit()
 
-cursor.execute("SELECT * FROM Favorites")
+cursor.execute("SELECT * FROM Favorite")
 print(cursor.fetchall())
 
 conn.close()
