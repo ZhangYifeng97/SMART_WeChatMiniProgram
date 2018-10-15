@@ -26,7 +26,7 @@ from urllib.request import urlopen
 #          "Abstract": abstract, "Bio": bio}
 # data = parse.urlencode(data2).encode('utf-8')
 
-data1 = {"BeginTime": "11:00:00", "UserID": "zyf", "Date": "2018-08-22", "Location": "Location"}
-url = 'http://127.0.0.1:5000/events/favorite?action=delete'
+data1 = {"BeginTime": "11:00:00", "UserID": "zyf", "Date": "2018-10-21", "Location": "Location 1"}
+url = 'http://127.0.0.1:5000/events/favorite?action=add'
 # url = 'http://10.15.21.58:80/events/SIST?password='+password
 requests.post(url, data=json.dumps(data1))

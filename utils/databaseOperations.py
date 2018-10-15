@@ -1,5 +1,6 @@
 import sqlite3
 import ast
+import json
 from . import stringParsing
 
 DBLocation = "database.db"
@@ -11,7 +12,7 @@ def getPopularEvents():
     query = """
             SELECT * FROM (
                 SELECT Date, BeginTime, Location, COUNT(*) AS count FROM Favorite
-                WHERE (date(Date) >= date('now'))
+                WHERE (date(Date) >= date(datetime('now', '+8 hours')))
                 GROUP BY Date, BeginTime, Location
                 ORDER BY count DESC
             ) LIMIT 10 ;
@@ -29,7 +30,7 @@ def getUserFavoriteEvents(UserID):
     cursor = conn.cursor()
     query = """
         SELECT * FROM Favorite AS E
-        WHERE (E.UserID = \'%s\')
+        WHERE (E.UserID = \'%s\') AND (date(Date) >= date(datetime('now', '+8 hours')))
         ORDER BY date(E.Date), time(E.BeginTime) ASC;
         """ % (UserID)
     print("executing: " + query)
@@ -51,7 +52,7 @@ def replaceIntoDB(tableName, postJSON):
 
     print(postJSON)
     print(type(postJSON))
-    updateDict = eval(postJSON)
+    updateDict = json.loads(postJSON)
 
     keyString, valueString = stringParsing.dict2SQL(updateDict)
 
@@ -79,7 +80,7 @@ def deleteFromDB(tableName, postJSON):
 
     print(postJSON)
     print(type(postJSON))
-    updateDict = eval(postJSON)
+    updateDict = json.loads(postJSON)
 
 
 
