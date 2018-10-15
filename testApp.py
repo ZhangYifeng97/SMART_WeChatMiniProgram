@@ -76,21 +76,51 @@ class SISTEvents(Resource):
 class GECEvents(Resource):
     def get(self):
         return databaseOperations.getFourteenDaysEvents("GEC")
+    
+    def post(self):
+        postJSON = request.get_data().decode("utf-8")
+        databaseOperations.replaceIntoDB("GEC", postJSON)
+        return postJSON
+
 class SLSTEvents(Resource):
     def get(self):
         return databaseOperations.getFourteenDaysEvents("SLST")
+    def post(self):
+        postJSON = request.get_data().decode("utf-8")
+        databaseOperations.replaceIntoDB("SLST", postJSON)
+        return postJSON
+
 class SPSTEvents(Resource):
     def get(self):
         return databaseOperations.getFourteenDaysEvents("SPST")
+    def post(self):
+        postJSON = request.get_data().decode("utf-8")
+        databaseOperations.replaceIntoDB("SPST", postJSON)
+        return postJSON
+
 class SEMEvents(Resource):
     def get(self):
         return databaseOperations.getFourteenDaysEvents("SEM")
+    def post(self):
+        postJSON = request.get_data().decode("utf-8")
+        databaseOperations.replaceIntoDB("SEM", postJSON)
+        return postJSON
+
 class SCAEvents(Resource):
     def get(self):
         return databaseOperations.getFourteenDaysEvents("SCA")
+    def post(self):
+        postJSON = request.get_data().decode("utf-8")
+        databaseOperations.replaceIntoDB("SCA", postJSON)
+        return postJSON
+
 class IMSEvents(Resource):
     def get(self):
         return databaseOperations.getFourteenDaysEvents("IMS")
+    def post(self):
+        postJSON = request.get_data().decode("utf-8")
+        databaseOperations.replaceIntoDB("IMS", postJSON)
+        return postJSON
 
 
 
