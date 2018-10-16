@@ -128,20 +128,20 @@ class IMSEvents(Resource):
 
 
 class Login(Resource):
-    def get(self):
+    def post(self):
 
         wxAPI = WXAPPAPI(appid=APP_ID, app_secret=APP_SECRET)
 
 
 
-
-        code = request.args.get("code")
+        loginJSON = request.get_data().decode("utf-8")
+        code = loginJSON["code"]
 
         ##############################################
         # FIXME: Flask request parser takes + as space
-        encrypted_data = request.args.get("encryptedData").replace(" ", "+")
-        iv = request.args.get("iv").replace(" ", "+")
-        ##############################################
+        encrypted_data = loginJSON["encryptedData"]
+        iv = loginJSON["iv"]
+
 
 
 
