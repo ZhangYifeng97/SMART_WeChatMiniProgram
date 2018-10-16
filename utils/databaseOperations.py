@@ -51,6 +51,7 @@ def replaceIntoDB(tableName, postJSON):
 
     print(postJSON)
     print(type(postJSON))
+    updateDict = postJSON
 
 
     keyString, valueString = stringParsing.dict2SQL(updateDict)
@@ -79,7 +80,7 @@ def deleteFromDB(tableName, postJSON):
 
     print(postJSON)
     print(type(postJSON))
-
+    updateDict = postJSON
 
 
     keyString, valueString = stringParsing.dict2SQL(updateDict)
