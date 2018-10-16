@@ -46,6 +46,7 @@ class FavoriteEvents(Resource):
             databaseOperations.replaceIntoDB("Favorite", postJSON)
         if action == "delete":
             databaseOperations.deleteFromDB("Favorite", postJSON)
+        print(postJSON)
         return postJSON
 
 
