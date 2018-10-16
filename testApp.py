@@ -42,7 +42,8 @@ class FavoriteEvents(Resource):
         return databaseOperations.getUserFavoriteEvents(UserID)
     def post(self):
         action = request.args.get("action")
-        postJSON = request.get_data().decode("utf-8")
+        postJSON = json.loads(request.get_data())
+
 
         if action == "add":
             databaseOperations.replaceIntoDB("Favorite", postJSON)
@@ -67,7 +68,7 @@ class SISTEvents(Resource):
             return "Invalid username or password"
 
         print("Right password")
-        postJSON = request.get_data().decode("utf-8")
+        postJSON = json.loads(request.get_data())
         print(postJSON)
         databaseOperations.replaceIntoDB("SIST", postJSON)
         return postJSON
@@ -81,7 +82,7 @@ class GECEvents(Resource):
         return databaseOperations.getFourteenDaysEvents("GEC")
     
     def post(self):
-        postJSON = request.get_data().decode("utf-8")
+        postJSON = json.loads(request.get_data())
         databaseOperations.replaceIntoDB("GEC", postJSON)
         return postJSON
 
@@ -89,7 +90,7 @@ class SLSTEvents(Resource):
     def get(self):
         return databaseOperations.getFourteenDaysEvents("SLST")
     def post(self):
-        postJSON = request.get_data().decode("utf-8")
+        postJSON = json.loads(request.get_data())
         databaseOperations.replaceIntoDB("SLST", postJSON)
         return postJSON
 
@@ -97,7 +98,7 @@ class SPSTEvents(Resource):
     def get(self):
         return databaseOperations.getFourteenDaysEvents("SPST")
     def post(self):
-        postJSON = request.get_data().decode("utf-8")
+        postJSON = json.loads(request.get_data())
         databaseOperations.replaceIntoDB("SPST", postJSON)
         return postJSON
 
@@ -105,7 +106,7 @@ class SEMEvents(Resource):
     def get(self):
         return databaseOperations.getFourteenDaysEvents("SEM")
     def post(self):
-        postJSON = request.get_data().decode("utf-8")
+        postJSON = json.loads(request.get_data())
         databaseOperations.replaceIntoDB("SEM", postJSON)
         return postJSON
 
@@ -113,7 +114,7 @@ class SCAEvents(Resource):
     def get(self):
         return databaseOperations.getFourteenDaysEvents("SCA")
     def post(self):
-        postJSON = request.get_data().decode("utf-8")
+        postJSON = json.loads(request.get_data())
         databaseOperations.replaceIntoDB("SCA", postJSON)
         return postJSON
 
@@ -121,7 +122,7 @@ class IMSEvents(Resource):
     def get(self):
         return databaseOperations.getFourteenDaysEvents("IMS")
     def post(self):
-        postJSON = request.get_data().decode("utf-8")
+        postJSON = json.loads(request.get_data())
         databaseOperations.replaceIntoDB("IMS", postJSON)
         return postJSON
 
@@ -135,7 +136,7 @@ class Login(Resource):
 
 
 
-        loginJSON = request.get_data().decode("utf-8")
+        loginJSON = json.loads(request.get_data())
         code = loginJSON["code"]
         encrypted_data = loginJSON["encryptedData"]
         iv = loginJSON["iv"]
