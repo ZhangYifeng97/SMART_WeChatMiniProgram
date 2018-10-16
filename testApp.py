@@ -42,7 +42,7 @@ class FavoriteEvents(Resource):
         return databaseOperations.getUserFavoriteEvents(UserID)
     def post(self):
         action = request.args.get("action")
-        postJSON = json.loads(request.get_data().decode("utf-8"))
+        postJSON = request.get_data().decode("utf-8")
 
         if action == "add":
             databaseOperations.replaceIntoDB("Favorite", postJSON)
@@ -67,7 +67,7 @@ class SISTEvents(Resource):
             return "Invalid username or password"
 
         print("Right password")
-        postJSON = json.loads(request.get_data().decode("utf-8"))
+        postJSON = request.get_data().decode("utf-8")
         print(postJSON)
         databaseOperations.replaceIntoDB("SIST", postJSON)
         return postJSON
@@ -81,7 +81,7 @@ class GECEvents(Resource):
         return databaseOperations.getFourteenDaysEvents("GEC")
     
     def post(self):
-        postJSON = json.loads(request.get_data().decode("utf-8"))
+        postJSON = request.get_data().decode("utf-8")
         databaseOperations.replaceIntoDB("GEC", postJSON)
         return postJSON
 
@@ -89,7 +89,7 @@ class SLSTEvents(Resource):
     def get(self):
         return databaseOperations.getFourteenDaysEvents("SLST")
     def post(self):
-        postJSON = json.loads(request.get_data().decode("utf-8"))
+        postJSON = request.get_data().decode("utf-8")
         databaseOperations.replaceIntoDB("SLST", postJSON)
         return postJSON
 
@@ -97,7 +97,7 @@ class SPSTEvents(Resource):
     def get(self):
         return databaseOperations.getFourteenDaysEvents("SPST")
     def post(self):
-        postJSON = json.loads(request.get_data().decode("utf-8"))
+        postJSON = request.get_data().decode("utf-8")
         databaseOperations.replaceIntoDB("SPST", postJSON)
         return postJSON
 
@@ -105,7 +105,7 @@ class SEMEvents(Resource):
     def get(self):
         return databaseOperations.getFourteenDaysEvents("SEM")
     def post(self):
-        postJSON = json.loads(request.get_data().decode("utf-8"))
+        postJSON = request.get_data().decode("utf-8")
         databaseOperations.replaceIntoDB("SEM", postJSON)
         return postJSON
 
@@ -113,7 +113,7 @@ class SCAEvents(Resource):
     def get(self):
         return databaseOperations.getFourteenDaysEvents("SCA")
     def post(self):
-        postJSON = json.loads(request.get_data().decode("utf-8"))
+        postJSON = request.get_data().decode("utf-8")
         databaseOperations.replaceIntoDB("SCA", postJSON)
         return postJSON
 
@@ -121,7 +121,7 @@ class IMSEvents(Resource):
     def get(self):
         return databaseOperations.getFourteenDaysEvents("IMS")
     def post(self):
-        postJSON = json.loads(request.get_data().decode("utf-8"))
+        postJSON = request.get_data().decode("utf-8")
         databaseOperations.replaceIntoDB("IMS", postJSON)
         return postJSON
 
@@ -135,7 +135,7 @@ class Login(Resource):
 
 
 
-        loginJSON = json.loads(request.get_data().decode("utf-8"))
+        loginJSON = request.get_data().decode("utf-8")
         code = loginJSON["code"]
         encrypted_data = loginJSON["encryptedData"]
         iv = loginJSON["iv"]
@@ -194,4 +194,4 @@ api.add_resource(PopularEvents, "/events/popular")
 
 
 if __name__ == '__main__':
-    app.run(debug=debugBool, host="0.0.0.0", port=5000)
+    app.run(debug=debugBool, host="0.0.0.0", port=80)
