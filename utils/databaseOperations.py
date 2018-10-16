@@ -1,6 +1,5 @@
 import sqlite3
 import ast
-import json
 from . import stringParsing
 
 DBLocation = "database.db"
@@ -52,7 +51,7 @@ def replaceIntoDB(tableName, postJSON):
 
     print(postJSON)
     print(type(postJSON))
-    updateDict = json.loads(postJSON)
+
 
     keyString, valueString = stringParsing.dict2SQL(updateDict)
 
@@ -80,7 +79,6 @@ def deleteFromDB(tableName, postJSON):
 
     print(postJSON)
     print(type(postJSON))
-    updateDict = json.loads(postJSON)
 
 
 
