@@ -130,7 +130,7 @@ class IMSEvents(Resource):
 
 
 class Login(Resource):
-    def post(self):
+    def get(self):
         wxAPI = WXAPPAPI(appid=APP_ID, app_secret=APP_SECRET)
 
 
