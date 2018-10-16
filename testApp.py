@@ -135,8 +135,9 @@ class Login(Resource):
         wxAPI = WXAPPAPI(appid=APP_ID, app_secret=APP_SECRET)
 
 
-
-        loginJSON = json.loads(request.get_data())
+        data = request.get_data()
+        print(data)
+        loginJSON = json.loads(data)
         code = loginJSON["code"]
         encrypted_data = loginJSON["encryptedData"]
         iv = loginJSON["iv"]
