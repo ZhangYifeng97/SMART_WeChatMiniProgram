@@ -13,20 +13,20 @@ from urllib.request import urlopen
 # location = input("Location/地点：")
 # abstract = input("Abstract/简介：")
 # bio = input("Bio/学者简介：")
-# password = "SIST"
-# title = "Title"
-# host = "Host"
-# speaker = "Speaker"
-# time = "20:00-21:00, September 29"
-# location = "Location"
-# abstract = "Abstract"
-# bio = "Bio"
+password = "SIST"
+title = "Title"
+host = "Host"
+speaker = "Speaker"
+time = "20:00-21:00, October 19"
+location = "Location"
+abstract = "Abstract"
+bio = "Bio"
 # data2 = {"Password": password}
-# data1 = {"Title": title, "Host": host, "Speaker": speaker, "Time": time, "Location": location,\
-#          "Abstract": abstract, "Bio": bio}
+data1 = {"Title": title, "Host": host, "Speaker": speaker, "Time": time, "Location": location,\
+         "Abstract": abstract, "Bio": bio}
 # data = parse.urlencode(data2).encode('utf-8')
 
-data1 = {"BeginTime": "11:00:00", "UserID": "zyf", "Date": "2018-10-21", "Location": "Location 1"}
-url = 'http://127.0.0.1:5000/events/favorite?action=add'
-# url = 'http://10.15.21.58:80/events/SIST?password='+password
+# data1 = {"BeginTime": "11:00:00", "UserID": "zyf", "Date": "2018-10-21", "Location": "Location 1"}
+# url = 'http://127.0.0.1:5000/events/favorite?action=add'
+url = 'http://10.15.21.58:80/events/SIST?password='+password
 requests.post(url, data=json.dumps(data1))
