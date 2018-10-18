@@ -14,8 +14,8 @@ import json
 
 Users = {"SIST": "SIST"}
 
-APP_ID = "wx8d674a9d2410f0f4"
-APP_SECRET = "59267080a5881dd0b307d438521b8b55"
+APP_ID = "wx2f288f8d6e59cb0c"
+APP_SECRET = "e8f76ec53056679cbdcb733e1015bb56"
 
 
 ############################################################################
