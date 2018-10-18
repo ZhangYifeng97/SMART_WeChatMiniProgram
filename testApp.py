@@ -167,7 +167,7 @@ class Login(Resource):
         return user_info
 
 
-api.add_resource(Login, '/login', endpoint="login")
+api.add_resource(Login, '/login')
 api.add_resource(GECEvents, '/events/GEC')
 api.add_resource(SISTEvents, '/events/SIST')
 api.add_resource(SLSTEvents, '/events/SLST')
