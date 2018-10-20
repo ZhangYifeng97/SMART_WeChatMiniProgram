@@ -134,7 +134,7 @@ class Login(Resource):
     def get(self):
         wxAPI = WXAPPAPI(appid=APP_ID, app_secret=APP_SECRET)
 
-
+        print("string is: ", request.query_string)
         # BLACK MAGIC
         ##############################################
         # FIXME: Flask request parser takes + as space
