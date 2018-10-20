@@ -135,10 +135,13 @@ class Login(Resource):
         wxAPI = WXAPPAPI(appid=APP_ID, app_secret=APP_SECRET)
 
 
-        code = request.args.get("code")        
+        # BLACK MAGIC
+        ##############################################
+        # FIXME: Flask request parser takes + as space
+        code = request.args.get("code").replace(" ", "+")    
         encrypted_data = request.args.get("encryptedData")
         iv = request.args.get("iv")
-
+        ##############################################
 
         # print(data)
         # loginJSON = json.loads(data)
