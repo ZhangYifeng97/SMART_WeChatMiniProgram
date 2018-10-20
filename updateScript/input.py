@@ -4,7 +4,7 @@ import json
 
 from urllib.request import urlopen
 
-# password = input("Password：")
+
 # title = input("Title/标题：")
 # host = input("Host/主办人（选填）：")
 # speaker = input("Speaker/主讲人:")
@@ -13,7 +13,7 @@ from urllib.request import urlopen
 # location = input("Location/地点：")
 # abstract = input("Abstract/简介：")
 # bio = input("Bio/学者简介：")
-password = "SIST"
+
 title = "Title"
 host = "Host"
 speaker = "Speaker"
@@ -28,5 +28,5 @@ data1 = {"Title": title, "Host": host, "Speaker": speaker, "Time": time, "Locati
 
 # data1 = {"BeginTime": "11:00:00", "UserID": "zyf", "Date": "2018-10-21", "Location": "Location 1"}
 # url = 'http://127.0.0.1:5000/events/favorite?action=add'
-url = 'http://10.15.21.58:80/events/SIST?password='+password
+url = 'http://10.15.21.58:80/events/SIST
 requests.post(url, data=json.dumps(data1))

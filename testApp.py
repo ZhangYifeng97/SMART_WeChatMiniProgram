@@ -62,12 +62,12 @@ class SISTEvents(Resource):
         return databaseOperations.getFourteenDaysEvents("SIST")
 
     def post(self):
-        postPassword = request.args.get("password")
+        # postPassword = request.args.get("password")
 
-        if postPassword != "SIST":
-            return "Invalid username or password"
+        # if postPassword != "SIST":
+        #     return "Invalid username or password"
 
-        print("Right password")
+        # print("Right password")
         postJSON = json.loads(request.get_data())
         print(postJSON)
         databaseOperations.replaceIntoDB("SIST", postJSON)
