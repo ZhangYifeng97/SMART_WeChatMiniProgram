@@ -50,7 +50,7 @@ def replaceIntoDB(tableName, postJSON):
     print ("Connected to database successfully")
 
     print(postJSON)
-    print(type(postJSON))
+    # print(type(postJSON))
     updateDict = postJSON
 
 
@@ -83,14 +83,15 @@ def deleteFromDB(tableName, postJSON):
     updateDict = postJSON
 
 
-    keyString, valueString = stringParsing.dict2SQL(updateDict)
 
-    print(keyString, valueString)
+    # keyString, valueString = stringParsing.dict2SQL(updateDict)
+
+    # print(keyString, valueString)
 
 
-    keys = keyString.split(",")
-    values = valueString.split(",")
-    conditions = ["%s = %s" % (i, j) for i, j in zip(keys, values)]
+    # keys = keyString.split(",")
+    # values = valueString.split(",")
+    conditions = ["%s = %s" % (key, updateDict[key]) for key in updateDict]
     conditionString = " AND".join(conditions)
 
 
