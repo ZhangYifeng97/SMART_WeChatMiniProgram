@@ -131,16 +131,20 @@ class IMSEvents(Resource):
 
 
 class Login(Resource):
-    def post(self):
+    def get(self):
         wxAPI = WXAPPAPI(appid=APP_ID, app_secret=APP_SECRET)
 
 
-        data = request.get_data()
-        print(data)
-        loginJSON = json.loads(data)
-        code = loginJSON["code"]
-        encrypted_data = loginJSON["encryptedData"]
-        iv = loginJSON["iv"]
+        code = request.args.get("code")        
+        encrypted_data = request.args.get("encryptedData")
+        iv = request.args.get("iv")
+
+
+        # print(data)
+        # loginJSON = json.loads(data)
+        # code = loginJSON["code"]
+        # encrypted_data = loginJSON["encryptedData"]
+        # iv = loginJSON["iv"]
 
 
 
