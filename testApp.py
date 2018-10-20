@@ -138,7 +138,7 @@ class Login(Resource):
         # BLACK MAGIC
         ##############################################
         # FIXME: Flask request parser takes + as space
-        code = request.args.get("code").replace(" ", "+")    
+        code = request.args.get("code") 
         encrypted_data = request.args.get("encryptedData").replace(" ", "+")
         iv = request.args.get("iv").replace(" ", "+")
         ##############################################
