@@ -91,7 +91,7 @@ def deleteFromDB(tableName, postJSON):
 
     # keys = keyString.split(",")
     # values = valueString.split(",")
-    conditions = ["\'%s\' = \'%s\'" % (key, updateDict[key]) for key in updateDict]
+    conditions = ["%s = \'%s\'" % (key, updateDict[key]) for key in updateDict]
     conditionString = " AND ".join(conditions)
 
 
