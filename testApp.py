@@ -168,7 +168,7 @@ class Login(Resource):
         print("\ndata is : ", encrypted_data)
         print("\niv is : ", iv)
 
-        session_info = wxAPI.exchange_code_for_session_key(code=code)
+        session_info = wxAPI.exchange_code_for_session_key(js_code=code)
 
 
         print("\nsession_info is : ", session_info)
