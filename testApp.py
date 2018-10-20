@@ -184,17 +184,22 @@ class Login(Resource):
             # iv 加密算法的初始向量
             # 这两个参数需要js获取
             user_info = crypt.decrypt(encrypted_data, iv)
+            return user_info
 
         except:
-            session_info = wxAPI.exchange_code_for_session_key(code=code)
-            print("\nsession_info is : ", session_info)
-            session_key = session_info.get('session_key')
-            crypt = WXBizDataCrypt(APP_ID, session_key)
-            user_info = crypt.decrypt(encrypted_data, iv)
+            try:
+                session_info = wxAPI.exchange_code_for_session_key(code=code)
+                print("\nsession_info is : ", session_info)
+                session_key = session_info.get('session_key')
+                crypt = WXBizDataCrypt(APP_ID, session_key)
+                user_info = crypt.decrypt(encrypted_data, iv)
+                print("\nuserinfo: ", user_info)
+                return user_info
+            except:
+                return {"ConnectionError": "HTTPConnectionPool(host=https//smart-lectures.com', port=80): Max retries exceeded with url: /login (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at %030x>: Failed to establish a new connection: [Errno -2] Name or service not known',))" % random.randrange(16**12)}
 
 
-        print("\nuserinfo: ", user_info)
-        return user_info
+
 
 
 api.add_resource(Login, '/login')
