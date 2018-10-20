@@ -79,11 +79,14 @@ def deleteFromDB(tableName, postJSON):
     print ("Connected to database successfully")
 
     print(postJSON)
-    print(type(postJSON))
+
     updateDict = postJSON
 
 
     keyString, valueString = stringParsing.dict2SQL(updateDict)
+
+    print(keyString, valueString)
+
 
     keys = keyString.split(",")
     values = valueString.split(",")
