@@ -43,7 +43,7 @@ def getUserFavoriteEvents(UserID):
 
 
 
-def replaceIntoDB(postJSON):
+def replaceIntoDB(tableName, postJSON):
 
     conn = sqlite3.connect(DBLocation)
 
@@ -72,7 +72,7 @@ def replaceIntoDB(postJSON):
 
 
 
-def deleteFromDB(postJSON):
+def deleteFromDB(tableName, postJSON):
 
     conn = sqlite3.connect(DBLocation)
 

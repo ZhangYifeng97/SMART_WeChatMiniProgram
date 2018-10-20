@@ -70,7 +70,7 @@ class SISTEvents(Resource):
         # print("Right password")
         postJSON = json.loads(request.get_data())
         print(postJSON)
-        databaseOperations.replaceIntoDB("SIST", postJSON)
+        databaseOperations.replaceIntoDB("Events", postJSON)
         return postJSON
 
 
@@ -83,7 +83,7 @@ class GECEvents(Resource):
     
     def post(self):
         postJSON = json.loads(request.get_data())
-        databaseOperations.replaceIntoDB("GEC", postJSON)
+        databaseOperations.replaceIntoDB("Events", postJSON)
         return postJSON
 
 class SLSTEvents(Resource):
@@ -91,7 +91,7 @@ class SLSTEvents(Resource):
         return databaseOperations.getFourteenDaysEvents("SLST")
     def post(self):
         postJSON = json.loads(request.get_data())
-        databaseOperations.replaceIntoDB("SLST", postJSON)
+        databaseOperations.replaceIntoDB("Events", postJSON)
         return postJSON
 
 class SPSTEvents(Resource):
@@ -99,7 +99,7 @@ class SPSTEvents(Resource):
         return databaseOperations.getFourteenDaysEvents("SPST")
     def post(self):
         postJSON = json.loads(request.get_data())
-        databaseOperations.replaceIntoDB("SPST", postJSON)
+        databaseOperations.replaceIntoDB("Events", postJSON)
         return postJSON
 
 class SEMEvents(Resource):
@@ -107,7 +107,7 @@ class SEMEvents(Resource):
         return databaseOperations.getFourteenDaysEvents("SEM")
     def post(self):
         postJSON = json.loads(request.get_data())
-        databaseOperations.replaceIntoDB("SEM", postJSON)
+        databaseOperations.replaceIntoDB("Events", postJSON)
         return postJSON
 
 class SCAEvents(Resource):
@@ -115,7 +115,7 @@ class SCAEvents(Resource):
         return databaseOperations.getFourteenDaysEvents("SCA")
     def post(self):
         postJSON = json.loads(request.get_data())
-        databaseOperations.replaceIntoDB("SCA", postJSON)
+        databaseOperations.replaceIntoDB("Events", postJSON)
         return postJSON
 
 class IMSEvents(Resource):
@@ -123,7 +123,7 @@ class IMSEvents(Resource):
         return databaseOperations.getFourteenDaysEvents("IMS")
     def post(self):
         postJSON = json.loads(request.get_data())
-        databaseOperations.replaceIntoDB("IMS", postJSON)
+        databaseOperations.replaceIntoDB("Events", postJSON)
         return postJSON
 
 
