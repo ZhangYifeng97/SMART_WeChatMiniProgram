@@ -139,8 +139,8 @@ class Login(Resource):
         ##############################################
         # FIXME: Flask request parser takes + as space
         code = request.args.get("code").replace(" ", "+")    
-        encrypted_data = request.args.get("encryptedData")
-        iv = request.args.get("iv")
+        encrypted_data = request.args.get("encryptedData").replace(" ", "+")
+        iv = request.args.get("iv").replace(" ", "+")
         ##############################################
 
         # print(data)
