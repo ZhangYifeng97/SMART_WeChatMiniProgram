@@ -168,20 +168,31 @@ class Login(Resource):
         print("\ndata is : ", encrypted_data)
         print("\niv is : ", iv)
 
-        session_info = wxAPI.exchange_code_for_session_key(js_code=code)
+
+        try:
+            session_info = wxAPI.exchange_code_for_session_key(js_code=code)
 
 
-        print("\nsession_info is : ", session_info)
+            print("\nsession_info is : ", session_info)
 
-        # 获取session_info 后
+            # 获取session_info 后
 
-        session_key = session_info.get('session_key')
-        crypt = WXBizDataCrypt(APP_ID, session_key)
+            session_key = session_info.get('session_key')
+            crypt = WXBizDataCrypt(APP_ID, session_key)
 
-        # encrypted_data 包括敏感数据在内的完整用户信息的加密数据
-        # iv 加密算法的初始向量
-        # 这两个参数需要js获取
-        user_info = crypt.decrypt(encrypted_data, iv)
+            # encrypted_data 包括敏感数据在内的完整用户信息的加密数据
+            # iv 加密算法的初始向量
+            # 这两个参数需要js获取
+            user_info = crypt.decrypt(encrypted_data, iv)
+
+        except:
+            session_info = wxAPI.exchange_code_for_session_key(js_code=code)
+            print("\nsession_info is : ", session_info)
+            session_key = session_info.get('session_key')
+            crypt = WXBizDataCrypt(APP_ID, session_key)
+            user_info = crypt.decrypt(encrypted_data, iv)
+
+
         print("\nuserinfo: ", user_info)
         return user_info
 
