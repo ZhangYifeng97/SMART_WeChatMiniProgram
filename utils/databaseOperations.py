@@ -10,11 +10,11 @@ def getPopularEvents():
     cursor = conn.cursor()
     query = """
             SELECT * FROM (
-                SELECT E.*, COUNT(*) AS count FROM Favorite F
+                SELECT E.*, COUNT(*) AS Counter FROM Favorite F
                 LEFT JOIN Events E on E.Date = F.Date AND E.BeginTime = F.BeginTime AND E.Location = F.Location AND E.Department = F.Department
                 WHERE (date(E.Date) >= date(datetime('now', '+8 hours')))
                 GROUP BY E.Date, E.BeginTime, E.Location
-                ORDER BY count DESC
+                ORDER BY Counter DESC
             ) LIMIT 10 ;
             """
     cursor.execute(query)
@@ -29,11 +29,39 @@ def getUserFavoriteEvents(UserID):
     conn.row_factory = lambda c, r: dict(zip([col[0] for col in c.description], r))
     cursor = conn.cursor()
 
+
+
+    # query = """
+    #     SELECT E.* FROM Favorite F 
+    #     LEFT JOIN Events E ON E.Date = F.Date AND E.BeginTime = F.BeginTime AND E.Location = F.Location AND E.Department = F.Department
+    #     WHERE (date(E.Date) >= date(datetime('now', '+8 hours'))) AND F.UserID = \'%s\'
+    #     ORDER BY date(E.Date), time(E.BeginTime) ASC
+    #     ;
+    #     """ % (UserID)
     query = """
-        SELECT E.* FROM Favorite F 
-        LEFT JOIN Events E ON E.Date = F.Date AND E.BeginTime = F.BeginTime AND E.Location = F.Location AND E.Department = F.Department
-        WHERE (date(E.Date) >= date(datetime('now', '+8 hours'))) AND F.UserID = \'%s\'
-        ORDER BY date(E.Date), time(E.BeginTime) ASC
+
+            SELECT * FROM 
+
+            (
+                SELECT * FROM (
+                    SELECT E.*, COUNT(*) AS Counter FROM Favorite F
+                    LEFT JOIN Events E on E.Date = F.Date AND E.BeginTime = F.BeginTime AND E.Location = F.Location AND E.Department = F.Department
+                    WHERE (date(E.Date) >= date(datetime('now', '+8 hours')))
+                    GROUP BY E.Date, E.BeginTime, E.Location
+                    ORDER BY Counter DESC
+                )
+            ) AS A
+            JOIN
+            (
+                SELECT E.* FROM Favorite F 
+                LEFT JOIN Events E ON E.Date = F.Date AND E.BeginTime = F.BeginTime AND E.Location = F.Location AND E.Department = F.Department
+                WHERE (date(E.Date) >= date(datetime('now', '+8 hours'))) AND F.UserID = \'%s\'
+                ORDER BY date(E.Date), time(E.BeginTime) ASC 
+            ) AS B
+
+            ON A.Date = B.date AND A.BeginTime = B.BeginTime AND A.Location = B.Location AND A.Department = B.Department
+            ;
+
         """ % (UserID)
 
 
