@@ -170,7 +170,7 @@ class Login(Resource):
 
 
         try:
-            session_info = wxAPI.exchange_code_for_session_key(js_code=code)
+            session_info = wxAPI.exchange_code_for_session_key(code=code)
 
 
             print("\nsession_info is : ", session_info)
@@ -186,7 +186,7 @@ class Login(Resource):
             user_info = crypt.decrypt(encrypted_data, iv)
 
         except:
-            session_info = wxAPI.exchange_code_for_session_key(js_code=code)
+            session_info = wxAPI.exchange_code_for_session_key(code=code)
             print("\nsession_info is : ", session_info)
             session_key = session_info.get('session_key')
             crypt = WXBizDataCrypt(APP_ID, session_key)
