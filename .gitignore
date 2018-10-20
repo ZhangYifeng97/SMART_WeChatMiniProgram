@@ -3,3 +3,5 @@ log.*
 venv
 __pycache__/
 foo.*
+error
+*.db
