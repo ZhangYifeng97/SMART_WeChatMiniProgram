@@ -4,5 +4,4 @@ venv
 __pycache__/
 foo.*
 error
-kv.db
-database.db
+*.db
