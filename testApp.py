@@ -4,7 +4,8 @@ from flask_restful import Api, Resource
 import logging
 from logging.handlers import RotatingFileHandler
 
-from utils import databaseOperations
+from utils import databaseOperations, stringParsing
+
 
 from weixin import WXAPPAPI
 from weixin.lib.wxcrypt import WXBizDataCrypt
@@ -183,6 +184,8 @@ class Login(Resource):
             # iv 加密算法的初始向量
             # 这两个参数需要js获取
             user_info = crypt.decrypt(encrypted_data, iv)
+            postJSON = stringParsing.userInfo2SQL(user_info)
+            databaseOperations.replaceIntoDB("Users", postJSON)
             return user_info
 
         except:

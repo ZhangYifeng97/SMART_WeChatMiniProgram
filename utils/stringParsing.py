@@ -24,6 +24,16 @@ def monthString2Num(string):
 
 
 
+def userInfo2SQL(userInfo):
+    postJSON = {}
+    postJSON["UserID"] = userInfo["OpenId"]
+    postJSON["Nickname"] = userInfo["nickName"]
+    postJSON["Gender"] = userInfo["gender"]
+    postJSON["City"] = userInfo["city"]
+    postJSON["Province"] = userInfo["province"]
+    postJSON["Country"] = userInfo["country"]
+    return postJSON
+
 def dict2SQL(updateDict):
     from datetime import datetime
     import re
