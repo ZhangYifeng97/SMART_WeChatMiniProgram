@@ -1,5 +1,7 @@
 import sqlite3
 import ast
+from hashlib import sha1
+from sqlitedict import SqliteDict
 from . import stringParsing
 
 DBLocation = "database.db"
@@ -20,6 +22,20 @@ def getPopularEvents():
     cursor.execute(query)
     return cursor.fetchall()
 
+
+def replaceIntoKV(openID, sessionKey):
+    dic = SqliteDict('kv.db', autocommit=True)
+    thirdSession = sha1(openID+sessionKey).hexdigest()
+    dic[thirdSession] = (openID, sessionKey)
+    dic.close()
+    return thirdSession
+
+
+def lookUpKV(thirdSession):
+    dic = SqliteDict('kv.db', autocommit=True)
+    openID, sessionKey = dic[thirdSession]
+    dic.close()
+    return openID, sessionKey
 
 
 

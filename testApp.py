@@ -173,7 +173,6 @@ class Login(Resource):
             session_info = wxAPI.exchange_code_for_session_key(code=code)
 
 
-            print("\nsession_info is : ", session_info)
 
             # 获取session_info 后
 
@@ -187,16 +186,7 @@ class Login(Resource):
             return user_info
 
         except:
-            try:
-                session_info = wxAPI.exchange_code_for_session_key(code=code)
-                print("\nsession_info is : ", session_info)
-                session_key = session_info.get('session_key')
-                crypt = WXBizDataCrypt(APP_ID, session_key)
-                user_info = crypt.decrypt(encrypted_data, iv)
-                print("\nuserinfo: ", user_info)
-                return user_info
-            except:
-                return {"ConnectionError": "HTTPConnectionPool(host=https//smart-lectures.com', port=80): Max retries exceeded with url: /login (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at %030x>: Failed to establish a new connection: [Errno -2] Name or service not known',))" % random.randrange(16**12)}
+            return {"ConnectionError": "HTTPConnectionPool(host=https//smart-lectures.com', port=80): Max retries exceeded with url: /login (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at %030x>: Failed to establish a new connection: [Errno -2] Name or service not known',))" % random.randrange(16**12)}
 
 
 
