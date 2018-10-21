@@ -13,10 +13,9 @@ from weixin.lib.wxcrypt import WXBizDataCrypt
 
 import json
 
-Users = {"SIST": "SIST"}
 
-APP_ID = "wx2f288f8d6e59cb0c"
-APP_SECRET = "e8f76ec53056679cbdcb733e1015bb56"
+APP_ID = "wx8d674a9d2410f0f4"
+APP_SECRET = "0b28ad89ec979b784d74779c2db064da"
 
 
 ############################################################################
@@ -148,7 +147,7 @@ class Login(Resource):
         ##############################################
 
 
-        code = request.args.get("code") 
+        code = request.args.get("code")
 
 
 
