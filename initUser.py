@@ -21,7 +21,7 @@ cursor.execute("""
         City NVARCHAR(10),
         Province NVARCHAR(10),
         Country NVARCHAR(10),
-        PRIMARY KEY UserID
+        PRIMARY KEY (UserID)
     );
 """)
 
