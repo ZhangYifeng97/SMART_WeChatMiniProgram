@@ -26,7 +26,7 @@ def monthString2Num(string):
 
 def userInfo2SQL(userInfo):
     postJSON = {}
-    postJSON["UserID"] = userInfo["OpenId"]
+    postJSON["UserID"] = userInfo["openId"]
     postJSON["Nickname"] = userInfo["nickName"]
     postJSON["Gender"] = userInfo["gender"]
     postJSON["City"] = userInfo["city"]
