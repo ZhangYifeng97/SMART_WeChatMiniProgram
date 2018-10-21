@@ -28,7 +28,7 @@ def userInfo2SQL(userInfo):
     postJSON = {}
     postJSON["UserID"] = userInfo["openId"]
     postJSON["Nickname"] = userInfo["nickName"]
-    postJSON["Gender"] = userInfo["gender"]
+    postJSON["Gender"] = str(userInfo["gender"])
     postJSON["City"] = userInfo["city"]
     postJSON["Province"] = userInfo["province"]
     postJSON["Country"] = userInfo["country"]
