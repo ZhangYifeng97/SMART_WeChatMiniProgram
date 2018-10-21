@@ -186,7 +186,7 @@ class Login(Resource):
             return user_info
 
         except:
-            return {"ConnectionError": "HTTPConnectionPool(host=https//smart-lectures.com', port=80): Max retries exceeded with url: /login (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at %030x>: Failed to establish a new connection: [Errno -2] Name or service not known',))" % random.randrange(16**12)}
+            return 1
 
 
 
