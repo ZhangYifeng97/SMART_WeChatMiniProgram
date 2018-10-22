@@ -183,9 +183,12 @@ class Login(Resource):
         # encrypted_data 包括敏感数据在内的完整用户信息的加密数据
         # iv 加密算法的初始向量
         # 这两个参数需要js获取
-        user_info = crypt.decrypt(encrypted_data, iv)
-        postJSON = stringParsing.userInfo2SQL(user_info)
-        databaseOperations.replaceIntoDB("Users", postJSON)
+        try:
+            user_info = crypt.decrypt(encrypted_data, iv)
+            postJSON = stringParsing.userInfo2SQL(user_info)
+            databaseOperations.replaceIntoDB("Users", postJSON)
+        except:
+            user_info = {"openId": session_info.get('openid')}
         return user_info
 
 
