@@ -14,6 +14,10 @@ from weixin.lib.wxcrypt import WXBizDataCrypt
 
 import json
 
+import sys
+reload(sys)
+sys.setdefaultencoding('utf-8')
+
 
 APP_ID = "wx8d674a9d2410f0f4"
 APP_SECRET = "0b28ad89ec979b784d74779c2db064da"
