@@ -143,12 +143,12 @@ class Login(Resource):
         # BLACK MAGIC
         ##############################################
         # FIXME: Flask request parser takes + as space
-        encrypted_data = str(request.args.get("encryptedData").replace(" ", "+")).encode(encoding='UTF-8',errors='strict')
-        iv = str(request.args.get("iv").replace(" ", "+")).encode(encoding='UTF-8',errors='strict')
+        encrypted_data = request.args.get("encryptedData").replace(" ", "+")
+        iv = request.args.get("iv").replace(" ", "+")
         ##############################################
 
 
-        code = str(request.args.get("code")).encode(encoding='UTF-8',errors='strict')
+        code = request.args.get("code")
 
 
 
@@ -177,7 +177,7 @@ class Login(Resource):
 
         # 获取session_info 后
 
-        session_key = str(session_info.get('session_key')).encode(encoding='UTF-8',errors='strict')
+        session_key = session_info.get('session_key')
         crypt = WXBizDataCrypt(APP_ID, session_key)
 
         # encrypted_data 包括敏感数据在内的完整用户信息的加密数据
