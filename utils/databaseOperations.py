@@ -257,82 +257,82 @@ def getFourteenDaysEvents(departmentName):
     """ % departmentName)
     fourteenDaysEvents.append(cursor.fetchall())
 
-    # Day 7
-    cursor.execute("""
-        SELECT E.*, COUNT(DISTINCT F.UserID) AS 'Counter'
-        FROM Events E LEFT JOIN Favorite F ON E.Date = F.Date AND E.BeginTime = F.BeginTime AND E.Location = F.Location AND E.Department = F.Department
-        WHERE (date(E.Date) == date(datetime('now', '+7 day', '+8 hours'))) AND E.Department = \'%s\'
-        GROUP BY E.Date, E.BeginTime, E.Location
-        ORDER BY date(E.Date), time(E.BeginTime) ASC
-        ;
-    """ % departmentName)
-    fourteenDaysEvents.append(cursor.fetchall())
+    # # Day 7
+    # cursor.execute("""
+    #     SELECT E.*, COUNT(DISTINCT F.UserID) AS 'Counter'
+    #     FROM Events E LEFT JOIN Favorite F ON E.Date = F.Date AND E.BeginTime = F.BeginTime AND E.Location = F.Location AND E.Department = F.Department
+    #     WHERE (date(E.Date) == date(datetime('now', '+7 day', '+8 hours'))) AND E.Department = \'%s\'
+    #     GROUP BY E.Date, E.BeginTime, E.Location
+    #     ORDER BY date(E.Date), time(E.BeginTime) ASC
+    #     ;
+    # """ % departmentName)
+    # fourteenDaysEvents.append(cursor.fetchall())
 
-    # Day 8
-    cursor.execute("""
-        SELECT E.*, COUNT(DISTINCT F.UserID) AS 'Counter'
-        FROM Events E LEFT JOIN Favorite F ON E.Date = F.Date AND E.BeginTime = F.BeginTime AND E.Location = F.Location AND E.Department = F.Department
-        WHERE (date(E.Date) == date(datetime('now', '+8 day', '+8 hours'))) AND E.Department = \'%s\'
-        GROUP BY E.Date, E.BeginTime, E.Location
-        ORDER BY date(E.Date), time(E.BeginTime) ASC
-        ;
-    """ % departmentName)
-    fourteenDaysEvents.append(cursor.fetchall())
+    # # Day 8
+    # cursor.execute("""
+    #     SELECT E.*, COUNT(DISTINCT F.UserID) AS 'Counter'
+    #     FROM Events E LEFT JOIN Favorite F ON E.Date = F.Date AND E.BeginTime = F.BeginTime AND E.Location = F.Location AND E.Department = F.Department
+    #     WHERE (date(E.Date) == date(datetime('now', '+8 day', '+8 hours'))) AND E.Department = \'%s\'
+    #     GROUP BY E.Date, E.BeginTime, E.Location
+    #     ORDER BY date(E.Date), time(E.BeginTime) ASC
+    #     ;
+    # """ % departmentName)
+    # fourteenDaysEvents.append(cursor.fetchall())
 
-    # Day 9
-    cursor.execute("""
-        SELECT E.*, COUNT(DISTINCT F.UserID) AS 'Counter'
-        FROM Events E LEFT JOIN Favorite F ON E.Date = F.Date AND E.BeginTime = F.BeginTime AND E.Location = F.Location AND E.Department = F.Department
-        WHERE (date(E.Date) == date(datetime('now', '+9 day', '+8 hours'))) AND E.Department = \'%s\'
-        GROUP BY E.Date, E.BeginTime, E.Location
-        ORDER BY date(E.Date), time(E.BeginTime) ASC
-        ;
-    """ % departmentName)
-    fourteenDaysEvents.append(cursor.fetchall())
+    # # Day 9
+    # cursor.execute("""
+    #     SELECT E.*, COUNT(DISTINCT F.UserID) AS 'Counter'
+    #     FROM Events E LEFT JOIN Favorite F ON E.Date = F.Date AND E.BeginTime = F.BeginTime AND E.Location = F.Location AND E.Department = F.Department
+    #     WHERE (date(E.Date) == date(datetime('now', '+9 day', '+8 hours'))) AND E.Department = \'%s\'
+    #     GROUP BY E.Date, E.BeginTime, E.Location
+    #     ORDER BY date(E.Date), time(E.BeginTime) ASC
+    #     ;
+    # """ % departmentName)
+    # fourteenDaysEvents.append(cursor.fetchall())
 
-    # Day 10
-    cursor.execute("""
-        SELECT E.*, COUNT(DISTINCT F.UserID) AS 'Counter'
-        FROM Events E LEFT JOIN Favorite F ON E.Date = F.Date AND E.BeginTime = F.BeginTime AND E.Location = F.Location AND E.Department = F.Department
-        WHERE (date(E.Date) == date(datetime('now', '+10 day', '+8 hours'))) AND E.Department = \'%s\'
-        GROUP BY E.Date, E.BeginTime, E.Location
-        ORDER BY date(E.Date), time(E.BeginTime) ASC
-        ;
-    """ % departmentName)
-    fourteenDaysEvents.append(cursor.fetchall())
+    # # Day 10
+    # cursor.execute("""
+    #     SELECT E.*, COUNT(DISTINCT F.UserID) AS 'Counter'
+    #     FROM Events E LEFT JOIN Favorite F ON E.Date = F.Date AND E.BeginTime = F.BeginTime AND E.Location = F.Location AND E.Department = F.Department
+    #     WHERE (date(E.Date) == date(datetime('now', '+10 day', '+8 hours'))) AND E.Department = \'%s\'
+    #     GROUP BY E.Date, E.BeginTime, E.Location
+    #     ORDER BY date(E.Date), time(E.BeginTime) ASC
+    #     ;
+    # """ % departmentName)
+    # fourteenDaysEvents.append(cursor.fetchall())
 
-    # Day 11
-    cursor.execute("""
-        SELECT E.*, COUNT(DISTINCT F.UserID) AS 'Counter'
-        FROM Events E LEFT JOIN Favorite F ON E.Date = F.Date AND E.BeginTime = F.BeginTime AND E.Location = F.Location AND E.Department = F.Department
-        WHERE (date(E.Date) == date(datetime('now', '+11 day', '+8 hours'))) AND E.Department = \'%s\'
-        GROUP BY E.Date, E.BeginTime, E.Location
-        ORDER BY date(E.Date), time(E.BeginTime) ASC
-        ;
-    """ % departmentName)
-    fourteenDaysEvents.append(cursor.fetchall())
+    # # Day 11
+    # cursor.execute("""
+    #     SELECT E.*, COUNT(DISTINCT F.UserID) AS 'Counter'
+    #     FROM Events E LEFT JOIN Favorite F ON E.Date = F.Date AND E.BeginTime = F.BeginTime AND E.Location = F.Location AND E.Department = F.Department
+    #     WHERE (date(E.Date) == date(datetime('now', '+11 day', '+8 hours'))) AND E.Department = \'%s\'
+    #     GROUP BY E.Date, E.BeginTime, E.Location
+    #     ORDER BY date(E.Date), time(E.BeginTime) ASC
+    #     ;
+    # """ % departmentName)
+    # fourteenDaysEvents.append(cursor.fetchall())
 
-    # Day 12
-    cursor.execute("""
-        SELECT E.*, COUNT(DISTINCT F.UserID) AS 'Counter'
-        FROM Events E LEFT JOIN Favorite F ON E.Date = F.Date AND E.BeginTime = F.BeginTime AND E.Location = F.Location AND E.Department = F.Department
-        WHERE (date(E.Date) == date(datetime('now', '+12 day', '+8 hours'))) AND E.Department = \'%s\'
-        GROUP BY E.Date, E.BeginTime, E.Location
-        ORDER BY date(E.Date), time(E.BeginTime) ASC
-        ;
-    """ % departmentName)
-    fourteenDaysEvents.append(cursor.fetchall())
+    # # Day 12
+    # cursor.execute("""
+    #     SELECT E.*, COUNT(DISTINCT F.UserID) AS 'Counter'
+    #     FROM Events E LEFT JOIN Favorite F ON E.Date = F.Date AND E.BeginTime = F.BeginTime AND E.Location = F.Location AND E.Department = F.Department
+    #     WHERE (date(E.Date) == date(datetime('now', '+12 day', '+8 hours'))) AND E.Department = \'%s\'
+    #     GROUP BY E.Date, E.BeginTime, E.Location
+    #     ORDER BY date(E.Date), time(E.BeginTime) ASC
+    #     ;
+    # """ % departmentName)
+    # fourteenDaysEvents.append(cursor.fetchall())
 
-    # Day 13
-    cursor.execute("""
-        SELECT E.*, COUNT(DISTINCT F.UserID) AS 'Counter'
-        FROM Events E LEFT JOIN Favorite F ON E.Date = F.Date AND E.BeginTime = F.BeginTime AND E.Location = F.Location AND E.Department = F.Department
-        WHERE (date(E.Date) == date(datetime('now', '+13 day', '+8 hours'))) AND E.Department = \'%s\'
-        GROUP BY E.Date, E.BeginTime, E.Location
-        ORDER BY date(E.Date), time(E.BeginTime) ASC
-        ;
-    """ % departmentName)
-    fourteenDaysEvents.append(cursor.fetchall())
+    # # Day 13
+    # cursor.execute("""
+    #     SELECT E.*, COUNT(DISTINCT F.UserID) AS 'Counter'
+    #     FROM Events E LEFT JOIN Favorite F ON E.Date = F.Date AND E.BeginTime = F.BeginTime AND E.Location = F.Location AND E.Department = F.Department
+    #     WHERE (date(E.Date) == date(datetime('now', '+13 day', '+8 hours'))) AND E.Department = \'%s\'
+    #     GROUP BY E.Date, E.BeginTime, E.Location
+    #     ORDER BY date(E.Date), time(E.BeginTime) ASC
+    #     ;
+    # """ % departmentName)
+    # fourteenDaysEvents.append(cursor.fetchall())
 
     print(fourteenDaysEvents)
     print(len(fourteenDaysEvents)) # = 14
