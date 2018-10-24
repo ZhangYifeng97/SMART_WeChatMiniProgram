@@ -14,19 +14,23 @@ from urllib.request import urlopen
 # abstract = input("Abstract/简介：")
 # bio = input("Bio/学者简介：")
 
-title = "Title"
-host = "Host"
-speaker = "Speaker"
+department = "GEC"
+title = "Lecture A"
+host = "ZYF"
+speaker = "ZYF"
+
+
 time = "20:00-21:00, October 19"
 location = "Location"
 abstract = "Abstract"
 bio = "Bio"
-# data2 = {"Password": password}
-data1 = {"Title": title, "Host": host, "Speaker": speaker, "Time": time, "Location": location,\
-         "Abstract": abstract, "Bio": bio}
-# data = parse.urlencode(data2).encode('utf-8')
 
-# data1 = {"BeginTime": "11:00:00", "UserID": "zyf", "Date": "2018-10-21", "Location": "Location 1"}
-# url = 'http://127.0.0.1:5000/events/favorite?action=add'
-url = 'http://10.15.21.58:80/events/SIST
+
+
+data1 = {"Title": title, "Host": host, "Speaker": speaker, "Time": time, "Location": location,\
+         "Abstract": abstract, "Bio": bio, "Department": department}
+
+
+
+url = 'http://10.15.21.58:80/events/' + department
 requests.post(url, data=json.dumps(data1))
