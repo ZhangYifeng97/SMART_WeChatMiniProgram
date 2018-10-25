@@ -7,13 +7,14 @@ from urllib.request import urlopen
 
 
 department = "GEC"
-time = "20:00-21:00, October 19"
+begintime = "20:00:00"
+date = "2018-10-19"
 location = "Location"
 
 
 
 
-data1 = {"Time": time, "Location": location, "Department": department}
+data1 = {"BeginTime": begintime, "Location": location, "Department": department}
 
 
 
