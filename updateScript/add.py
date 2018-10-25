@@ -5,14 +5,11 @@ import json
 from urllib.request import urlopen
 
 
-# title = input("Title/标题：")
-# host = input("Host/主办人（选填）：")
-# speaker = input("Speaker/主讲人:")
-# print("The format of the time is like this: 14:00—15:00, August 5(hh:mm-hh:mm, month(full name) day(int)")
-# time = input("Time/时间：")
-# location = input("Location/地点：")
-# abstract = input("Abstract/简介：")
-# bio = input("Bio/学者简介：")
+
+# The format of the time is like this: 
+#   hh:mm-hh:mm, month(full name) day(int)
+#   e.g. 14:00—15:00, August 5
+
 
 department = "GEC"
 title = "Lecture A"
@@ -32,5 +29,5 @@ data1 = {"Title": title, "Host": host, "Speaker": speaker, "Time": time, "Locati
 
 
 
-url = 'http://10.15.21.58:80/events/' + department
+url = 'http://10.15.21.58:80/events/' + department + '?action=add'
 requests.post(url, data=json.dumps(data1))

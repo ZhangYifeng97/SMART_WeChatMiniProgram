@@ -45,7 +45,6 @@ class FavoriteEvents(Resource):
         action = request.args.get("action")
         postJSON = json.loads(request.get_data())
 
-
         if action == "add":
             databaseOperations.replaceIntoDB("Favorite", postJSON)
         if action == "delete":
@@ -63,18 +62,16 @@ class SISTEvents(Resource):
         return databaseOperations.getFourteenDaysEvents("SIST")
 
     def post(self):
-        # postPassword = request.args.get("password")
-
-        # if postPassword != "SIST":
-        #     return "Invalid username or password"
-
-        # print("Right password")
+        action = request.args.get("action")
         postJSON = json.loads(request.get_data())
+
+
+        if action == "add":
+            databaseOperations.replaceIntoDB("Events", postJSON)
+        if action == "delete":
+            databaseOperations.deleteFromDB("Events", postJSON)
         print(postJSON)
-        databaseOperations.replaceIntoDB("Events", postJSON)
         return postJSON
-
-
 
 
 
@@ -83,49 +80,96 @@ class GECEvents(Resource):
         return databaseOperations.getFourteenDaysEvents("GEC")
     
     def post(self):
+        action = request.args.get("action")
         postJSON = json.loads(request.get_data())
-        databaseOperations.replaceIntoDB("Events", postJSON)
+
+
+        if action == "add":
+            databaseOperations.replaceIntoDB("Events", postJSON)
+        if action == "delete":
+            databaseOperations.deleteFromDB("Events", postJSON)
+        print(postJSON)
         return postJSON
+
 
 class SLSTEvents(Resource):
     def get(self):
         return databaseOperations.getFourteenDaysEvents("SLST")
     def post(self):
+        action = request.args.get("action")
         postJSON = json.loads(request.get_data())
-        databaseOperations.replaceIntoDB("Events", postJSON)
+
+
+        if action == "add":
+            databaseOperations.replaceIntoDB("Events", postJSON)
+        if action == "delete":
+            databaseOperations.deleteFromDB("Events", postJSON)
+        print(postJSON)
         return postJSON
+
 
 class SPSTEvents(Resource):
     def get(self):
         return databaseOperations.getFourteenDaysEvents("SPST")
     def post(self):
+        action = request.args.get("action")
         postJSON = json.loads(request.get_data())
-        databaseOperations.replaceIntoDB("Events", postJSON)
+
+
+        if action == "add":
+            databaseOperations.replaceIntoDB("Events", postJSON)
+        if action == "delete":
+            databaseOperations.deleteFromDB("Events", postJSON)
+        print(postJSON)
         return postJSON
+
 
 class SEMEvents(Resource):
     def get(self):
         return databaseOperations.getFourteenDaysEvents("SEM")
     def post(self):
+        action = request.args.get("action")
         postJSON = json.loads(request.get_data())
-        databaseOperations.replaceIntoDB("Events", postJSON)
+
+
+        if action == "add":
+            databaseOperations.replaceIntoDB("Events", postJSON)
+        if action == "delete":
+            databaseOperations.deleteFromDB("Events", postJSON)
+        print(postJSON)
         return postJSON
+
 
 class SCAEvents(Resource):
     def get(self):
         return databaseOperations.getFourteenDaysEvents("SCA")
     def post(self):
+        action = request.args.get("action")
         postJSON = json.loads(request.get_data())
-        databaseOperations.replaceIntoDB("Events", postJSON)
+
+
+        if action == "add":
+            databaseOperations.replaceIntoDB("Events", postJSON)
+        if action == "delete":
+            databaseOperations.deleteFromDB("Events", postJSON)
+        print(postJSON)
         return postJSON
+
 
 class IMSEvents(Resource):
     def get(self):
         return databaseOperations.getFourteenDaysEvents("IMS")
     def post(self):
+        action = request.args.get("action")
         postJSON = json.loads(request.get_data())
-        databaseOperations.replaceIntoDB("Events", postJSON)
+
+        if action == "add":
+            databaseOperations.replaceIntoDB("Events", postJSON)
+        if action == "delete":
+            databaseOperations.deleteFromDB("Events", postJSON)
+        print(postJSON)
         return postJSON
+
 
 
 
